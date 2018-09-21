@@ -70,15 +70,19 @@ else:
 
 
 class Monitor(process):  
-    def setup(exc:bool,int:nprocs):
+    def setup(exc:bool,nprocs:int):
         self.count =0
         self.exc=True
+        self.rudataList = list()
+        self.recievedFinishExecution = 0
     
     def run():
         print("Monitor on")
         while exc:
             -- chk
             pass
+        output(ResourceUsageData.aggregate(rudataList))
+        send(('done', self), to= parent())
         print("Monitor off..")
 
     def receive(msg= ('execCS',_, _)):
@@ -96,6 +100,12 @@ class Monitor(process):
         print("done message recieved ")
         self.exc = False
 
+    def receive(msg= ('finishExecution',rudata), from_=source):
+        recievedFinishExecution+=1;
+        rudataList.append(rudata)
+        print("finishExecution message Received %d"%(recievedFinishExecution))
+        if(recievedFinishExecution==self.nprocs):
+            self.exc=False
 
 
 
@@ -178,7 +188,8 @@ class P(process):
         send(('done', self), to= parent())
         await(received(('done',), from_=parent()))
         self.rudata.end()
-        output(getattr(self.rudata, 'results'))
+        rudataResult = getattr(self.rudata, 'results')
+        send(('finishExecution',rudata), to=monitor)
         output('terminating')
 
 def main():
@@ -194,6 +205,8 @@ def main():
     start = time.time()
     t1 = time.perf_counter()
     count=0
+    
+
     for p in ps: 
         setup(p, (ps-{p}, nrequests,count,monitor))
         count=count+1
@@ -202,7 +215,6 @@ def main():
     start(monitor)
     start(ps)
     await(each(p in ps, has=received(('done', p))))
-
     send(('done',), to=ps)
 
     t2 = time.perf_counter()
@@ -211,7 +223,8 @@ def main():
     output(t2-t1)
     print("Elapsed time : %f" %(end-start))
     print(end_cputime-start_cputime)
-    send(('done'), to=monitor)
+    #await(each(p in monitor, has=received(('done', p))))
+    #send(('done'), to=monitor)
 
     
 
