@@ -1,0 +1,123 @@
+import sys
+import time
+import json
+from itertools import chain
+config(channel is fifo, clock is lamport)
+import random
+
+
+# Resource usage data tracking. Reports several measurements
+# of time between start and end, and memory usage at end.
+
+class WinResourceUsageData:
+    
+    """Tracks process time only."""
+    
+    def start(self):
+        self.start_cputime = time.process_time()
+    
+    def end(self):
+        self.end_cputime = time.process_time()
+        
+        self.results = {
+            'ProcessTime': self.end_cputime - self.start_cputime,
+        }
+    
+    @classmethod
+    def aggregate(cls, rudata_points):
+        return {
+            'Total_process_time': sum(p.results['Total_process_time']
+                                      for p in rudata_points),
+            'Total_processes': len(rudata_points),
+        }
+
+class PosixResourceUsageData:
+    
+    """Tracks utime, stime, and maxrss."""
+    
+    def start(self):
+        self.start_data = resource.getrusage(resource.RUSAGE_SELF)
+    
+    def end(self):
+        self.end_data = resource.getrusage(resource.RUSAGE_SELF)
+        
+        def diff(attr):
+            return (getattr(self.end_data, attr) -
+                    getattr(self.start_data, attr))
+        
+        self.results = {
+            'Total_user_time': diff('ru_utime'),
+            'Total_system_time': diff('ru_stime'),
+            'Total_process_time': diff('ru_utime') + diff('ru_stime'),
+            'Total_memory': self.end_data.ru_maxrss,
+        }
+    
+    @classmethod
+    def aggregate(cls, rudata_points):
+        def sumof(attr):
+            return sum(p.results[attr] for p in rudata_points)
+        aggr_results = {k: sumof(k) for k in [
+            'Total_user_time', 'Total_system_time',
+            'Total_process_time', 'Total_memory']}
+        aggr_results['Total_processes'] = len(rudata_points)
+        return aggr_results
+
+if sys.platform == "win32":
+    ResourceUsageData = WinResourceUsageData
+else:
+    import resource
+    ResourceUsageData = PosixResourceUsageData
+
+
+
+class Monitor(process):  
+    def setup(exc:bool,nprocs:int):
+        self.count =0
+        self.exc=True
+        self.rudataList = list()
+        self.recievedFinishExecution = 0
+        self.elapsedTime =0
+        self.isDeadlock = False
+        self.totalCriticalSectionExecuted=0
+        self.correctness = True
+    
+    def run():
+        #print("Monitor on")
+        startTime = time.time()
+        while exc:
+            -- chk
+            pass
+        endTime = time.time()
+        self.elapsedTime = endTime - startTime
+        jsonResult = ResourceUsageData.aggregate(rudataList)
+        jsonResult['elapsedTime'] = self.elapsedTime
+        jsonResult['IsDeadlock'] = isDeadlock
+        jsonResult['TotalCriticalSectionExecuted'] = totalCriticalSectionExecuted
+        print(jsonResult)
+        #print("Total Time: %f" %(self.elapsedTime))
+        send(('done', self), to= parent())
+        #print("Monitor off..")
+
+    def receive(msg= ('execCS',_, _)):
+        #print("execCS")
+        count=count+1
+        self.totalCriticalSectionExecuted+=1
+        if count >= 2:
+            print("System Safety Compromised ")
+            self.correctness = False
+
+    def receive(msg= ('finishCS',_, _)):
+        count=count-1
+        if count<0:
+            print("System Behaving abruptly")
+
+
+    def receive(msg= ('finishExecution',rudata), from_=source):
+        recievedFinishExecution+=1;
+        rudataList.append(rudata)
+        #print("finishExecution message Received %d"%(recievedFinishExecution))
+        if(recievedFinishExecution==self.nprocs):
+            self.exc=False
+
+    def receive(msg= ('Deadlock')):
+        isDeadlock = True

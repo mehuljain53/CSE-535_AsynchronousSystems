@@ -9,6 +9,8 @@ from monitor import WinResourceUsageData
 from monitor import PosixResourceUsageData
 from monitor import Monitor
 from Lamport import lamport
+from orig import origProcess
+from spec import specProcess
 
 if sys.platform == "win32":
     ResourceUsageData = WinResourceUsageData
@@ -26,7 +28,9 @@ def main():
 
 
 
-    ######## My version of Lamport running n times with nprocs process and nrequests request
+
+
+    ############################## My version of Lamport running n times with nprocs process and nrequests request
     print("*************************** Running Correctness for Lamport Clock as mentioned in Assignement ***************************")
     for i in range(n):
         totalProcess = random.randint(1,nprocs)
@@ -53,7 +57,7 @@ def main():
     for requestFactor in range(d):
         totalProcess = nprocs
         totalRequest = processRequest*(requestFactor+1)
-        print("---------- Result for %d Process and %d Requests ----------" %(totalProcess,totalRequest))
+        print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
             print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
             ps = new(lamport, num=totalProcess)
@@ -70,10 +74,10 @@ def main():
             await(each(p in monitor, has=received(('done', p))))
 
 
-    processNumber = int(nrequests/d)
+    processNumber = int(nprocs/d)
 
     for processNumberFactor in range(d):
-        totalProcess = processRequest*(requestFactor+1)
+        totalProcess = processNumber*(processNumberFactor+1)
         totalRequest = nrequests
         print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
@@ -92,6 +96,135 @@ def main():
             await(each(p in monitor, has=received(('done', p))))
 
 
+
+
+    ############################ For Orig.da version of Algo
+    print("*************************** Running Correctness for Orig File Clock as mentioned in Assignement ***************************")
+    for i in range(n):
+        totalProcess = random.randint(1,nprocs)
+        totalRequest = random.randint(1,nrequests)
+        print("---------- Result for Iteration: %d: %d Process and %d Requests ----------" %(i+1,totalProcess,totalRequest))
+        ps = new(origProcess, num=totalProcess)
+        monitor = new(Monitor,num=1)
+        setup(monitor,(True,totalProcess))
+        
+        for p in ps: 
+            setup(p, (ps-{p}, totalRequest,monitor))
+            
+        start(monitor)
+        start(ps)
+        await(each(p in ps, has=received(('done', p))))
+        send(('done',), to=ps)
+        await(each(p in monitor, has=received(('done', p))))
+
+
+    print("*************************** Running Performance for Orig File Clock as mentioned in Assignement ***************************")
+    
+    processRequest = int(nrequests/d)
+
+    for requestFactor in range(d):
+        totalProcess = nprocs
+        totalRequest = processRequest*(requestFactor+1)
+        print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
+        for repeatTask in range(a):
+            print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
+            ps = new(origProcess, num=totalProcess)
+            monitor = new(Monitor,num=1)
+            setup(monitor,(True,totalProcess))
+            for p in ps: 
+                setup(p, (ps-{p}, totalRequest,monitor))
+
+            start(monitor)
+            start(ps)
+            await(each(p in ps, has=received(('done', p))))
+            send(('done',), to=ps)
+            await(each(p in monitor, has=received(('done', p))))
+
+
+    processNumber = int(nprocs/d)
+
+    for processNumberFactor in range(d):
+        totalProcess = processNumber*(processNumberFactor+1)
+        totalRequest = nrequests
+        print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
+        for repeatTask in range(a):
+            print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
+            ps = new(origProcess, num=totalProcess)
+            monitor = new(Monitor,num=1)
+            setup(monitor,(True,totalProcess))
+            
+            for p in ps: 
+                setup(p, (ps-{p}, totalRequest,monitor))
+                
+            start(monitor)
+            start(ps)
+            await(each(p in ps, has=received(('done', p))))
+            send(('done',), to=ps)
+            await(each(p in monitor, has=received(('done', p))))
+
+
+
+
+
+
+
+############################ For spec.da version of Algo
+    print("*************************** Running Correctness for Spec Clock as mentioned in Assignement ***************************")
+    for i in range(n):
+        totalProcess = random.randint(1,nprocs)
+        totalRequest = random.randint(1,nrequests)
+        print("---------- Result for Iteration: %d: %d Process and %d Requests ----------" %(i+1,totalProcess,totalRequest))
+        ps = new(specProcess, num=totalProcess)
+        monitor = new(Monitor,num=1)
+        setup(monitor,(True,totalProcess))
+        
+        for p in ps: 
+            setup(p, (ps-{p}, totalRequest,monitor))
+            
+        start(monitor)
+        start(ps)
+        await(each(p in monitor, has=received(('done', p))))
+
+
+    print("*************************** Running Performance for Spec Clock as mentioned in Assignement ***************************")
+    
+    processRequest = int(nrequests/d)
+
+    for requestFactor in range(d):
+        totalProcess = nprocs
+        totalRequest = processRequest*(requestFactor+1)
+        print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
+        for repeatTask in range(a):
+            print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
+            ps = new(specProcess, num=totalProcess)
+            monitor = new(Monitor,num=1)
+            setup(monitor,(True,totalProcess))
+            for p in ps: 
+                setup(p, (ps-{p}, totalRequest,monitor))
+
+            start(monitor)
+            start(ps)
+            await(each(p in monitor, has=received(('done', p))))
+
+
+    processNumber = int(nprocs/d)
+
+    for processNumberFactor in range(d):
+        totalProcess = processNumber*(processNumberFactor+1)
+        totalRequest = nrequests
+        print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
+        for repeatTask in range(a):
+            print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
+            ps = new(specProcess, num=totalProcess)
+            monitor = new(Monitor,num=1)
+            setup(monitor,(True,totalProcess))
+            
+            for p in ps: 
+                setup(p, (ps-{p}, totalRequest,monitor))
+                
+            start(monitor)
+            start(ps)
+            await(each(p in monitor, has=received(('done', p))))
 
 
 
