@@ -9,6 +9,8 @@ import random
 # Resource usage data tracking. Reports several measurements
 # of time between start and end, and memory usage at end.
 
+######### Following 2 classes WinResourceUsageData and PosixResourceUsageData are taken from https://github.com/DistAlgo/distalgo/blob/master/benchmarks/controller.da
+
 class WinResourceUsageData:
     
     """Tracks process time only."""
@@ -93,6 +95,7 @@ class Monitor(process):
         jsonResult['elapsedTime'] = self.elapsedTime
         jsonResult['IsDeadlock'] = isDeadlock
         jsonResult['TotalCriticalSectionExecuted'] = totalCriticalSectionExecuted
+        jsonResult['correctness'] = self.correctness
         print(jsonResult)
         #print("Total Time: %f" %(self.elapsedTime))
         send(('done', self), to= parent())

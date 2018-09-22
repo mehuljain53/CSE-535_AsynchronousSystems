@@ -11,6 +11,9 @@ from monitor import Monitor
 from Lamport import lamport
 from orig import origProcess
 from spec import specProcess
+from LamportPerf import LamportPeformance
+from origPerf import origProcessPerformance
+from specPerf import specProcessPerformance
 
 if sys.platform == "win32":
     ResourceUsageData = WinResourceUsageData
@@ -60,7 +63,7 @@ def main():
         print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
             print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
-            ps = new(lamport, num=totalProcess)
+            ps = new(LamportPeformance, num=totalProcess)
             monitor = new(Monitor,num=1)
             setup(monitor,(True,totalProcess))
             count=0
@@ -82,7 +85,7 @@ def main():
         print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
             print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
-            ps = new(lamport, num=totalProcess)
+            ps = new(LamportPeformance, num=totalProcess)
             monitor = new(Monitor,num=1)
             setup(monitor,(True,totalProcess))
             count=0
@@ -99,7 +102,7 @@ def main():
 
 
     ############################ For Orig.da version of Algo
-    print("*************************** Running Correctness for Orig File Clock as mentioned in Assignement ***************************")
+    print("*************************** Running Correctness for Orig File Clock  ***************************")
     for i in range(n):
         totalProcess = random.randint(1,nprocs)
         totalRequest = random.randint(1,nrequests)
@@ -118,7 +121,7 @@ def main():
         await(each(p in monitor, has=received(('done', p))))
 
 
-    print("*************************** Running Performance for Orig File Clock as mentioned in Assignement ***************************")
+    print("*************************** Running Performance for Orig File Clock ***************************")
     
     processRequest = int(nrequests/d)
 
@@ -128,7 +131,7 @@ def main():
         print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
             print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
-            ps = new(origProcess, num=totalProcess)
+            ps = new(origProcessPerformance, num=totalProcess)
             monitor = new(Monitor,num=1)
             setup(monitor,(True,totalProcess))
             for p in ps: 
@@ -149,7 +152,7 @@ def main():
         print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
             print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
-            ps = new(origProcess, num=totalProcess)
+            ps = new(origProcessPerformance, num=totalProcess)
             monitor = new(Monitor,num=1)
             setup(monitor,(True,totalProcess))
             
@@ -169,7 +172,7 @@ def main():
 
 
 ############################ For spec.da version of Algo
-    print("*************************** Running Correctness for Spec Clock as mentioned in Assignement ***************************")
+    print("*************************** Running Correctness for Spec File Clock ***************************")
     for i in range(n):
         totalProcess = random.randint(1,nprocs)
         totalRequest = random.randint(1,nrequests)
@@ -186,7 +189,7 @@ def main():
         await(each(p in monitor, has=received(('done', p))))
 
 
-    print("*************************** Running Performance for Spec Clock as mentioned in Assignement ***************************")
+    print("*************************** Running Performance for Spec File Clock  ***************************")
     
     processRequest = int(nrequests/d)
 
@@ -196,7 +199,7 @@ def main():
         print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
             print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
-            ps = new(specProcess, num=totalProcess)
+            ps = new(specProcessPerformance, num=totalProcess)
             monitor = new(Monitor,num=1)
             setup(monitor,(True,totalProcess))
             for p in ps: 
@@ -215,7 +218,7 @@ def main():
         print("################## Result for %d Process and %d Requests ##################" %(totalProcess,totalRequest))
         for repeatTask in range(a):
             print("---------- Result for Iteration: %d ----------" %(repeatTask+1))
-            ps = new(specProcess, num=totalProcess)
+            ps = new(specProcessPerformance, num=totalProcess)
             monitor = new(Monitor,num=1)
             setup(monitor,(True,totalProcess))
             
