@@ -1,0 +1,1500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module path</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>path</strong></big></big> (version 11.0.1)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/anaconda3/lib/python3.6/site-packages/path.py">/anaconda3/lib/python3.6/site-packages/path.py</a></font></td></tr></table>
+    <p><tt>path.py&nbsp;-&nbsp;An&nbsp;object&nbsp;representing&nbsp;a&nbsp;path&nbsp;to&nbsp;a&nbsp;file&nbsp;or&nbsp;directory.<br>
+&nbsp;<br>
+https://github.com/jaraco/path.py<br>
+&nbsp;<br>
+Example::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;path&nbsp;import&nbsp;<a href="#Path">Path</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;=&nbsp;<a href="#Path">Path</a>('/home/guido/bin')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;f&nbsp;in&nbsp;d.files('*.py'):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.chmod(0o755)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="contextlib.html">contextlib</a><br>
+<a href="distutils.html">distutils</a><br>
+<a href="errno.html">errno</a><br>
+<a href="fnmatch.html">fnmatch</a><br>
+<a href="functools.html">functools</a><br>
+</td><td width="25%" valign=top><a href="glob.html">glob</a><br>
+<a href="grp.html">grp</a><br>
+<a href="hashlib.html">hashlib</a><br>
+<a href="importlib.html">importlib</a><br>
+<a href="io.html">io</a><br>
+</td><td width="25%" valign=top><a href="itertools.html">itertools</a><br>
+<a href="operator.html">operator</a><br>
+<a href="os.html">os</a><br>
+<a href="pkg_resources.html">pkg_resources</a><br>
+<a href="pwd.html">pwd</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="shutil.html">shutil</a><br>
+<a href="sys.html">sys</a><br>
+<a href="tempfile.html">tempfile</a><br>
+<a href="warnings.html">warnings</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#str">builtins.str</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="path.html#CaseInsensitivePattern">CaseInsensitivePattern</a>
+</font></dt><dt><font face="helvetica, arial"><a href="path.html#Path">Path</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CaseInsensitivePattern">class <strong>CaseInsensitivePattern</strong></a>(<a href="builtins.html#str">builtins.str</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;string&nbsp;with&nbsp;a&nbsp;``'normcase'``&nbsp;property,&nbsp;suitable&nbsp;for&nbsp;passing&nbsp;to<br>
+:meth:`listdir`,&nbsp;:meth:`dirs`,&nbsp;:meth:`files`,&nbsp;:meth:`walk`,<br>
+:meth:`walkdirs`,&nbsp;or&nbsp;:meth:`walkfiles`&nbsp;to&nbsp;match&nbsp;case-insensitive.<br>
+&nbsp;<br>
+For&nbsp;example,&nbsp;to&nbsp;get&nbsp;all&nbsp;files&nbsp;ending&nbsp;in&nbsp;.py,&nbsp;.Py,&nbsp;.pY,&nbsp;or&nbsp;.PY&nbsp;in&nbsp;the<br>
+current&nbsp;directory::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;path&nbsp;import&nbsp;<a href="#Path">Path</a>,&nbsp;<a href="#CaseInsensitivePattern">CaseInsensitivePattern</a>&nbsp;as&nbsp;ci<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Path">Path</a>('.').files(ci('*.py'))<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="path.html#CaseInsensitivePattern">CaseInsensitivePattern</a></dd>
+<dd><a href="builtins.html#str">builtins.str</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>normcase</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="builtins.html#str">builtins.str</a>:<br>
+<dl><dt><a name="CaseInsensitivePattern-__add__"><strong>__add__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self+value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__contains__"><strong>__contains__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;key&nbsp;in&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__format__"><strong>__format__</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-__format__">__format__</a>(format_spec)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S&nbsp;as&nbsp;described&nbsp;by&nbsp;format_spec.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__getitem__"><strong>__getitem__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__getnewargs__"><strong>__getnewargs__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__hash__"><strong>__hash__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;hash(self).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__iter__"><strong>__iter__</strong></a>(self, /)</dt><dd><tt>Implement&nbsp;iter(self).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__len__"><strong>__len__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;len(self).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__mod__"><strong>__mod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self%value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__mul__"><strong>__mul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.n</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__rmod__"><strong>__rmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value%self.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__rmul__"><strong>__rmul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;S&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;<a href="builtins.html#str">str</a>(self).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-capitalize"><strong>capitalize</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-capitalize">capitalize</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;capitalized&nbsp;version&nbsp;of&nbsp;S,&nbsp;i.e.&nbsp;make&nbsp;the&nbsp;first&nbsp;character<br>
+have&nbsp;upper&nbsp;case&nbsp;and&nbsp;the&nbsp;rest&nbsp;lower&nbsp;case.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-casefold"><strong>casefold</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-casefold">casefold</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;version&nbsp;of&nbsp;S&nbsp;suitable&nbsp;for&nbsp;caseless&nbsp;comparisons.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-center"><strong>center</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-center">center</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;centered&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space)</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-count"><strong>count</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-count">count</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;number&nbsp;of&nbsp;non-overlapping&nbsp;occurrences&nbsp;of&nbsp;substring&nbsp;sub&nbsp;in<br>
+string&nbsp;S[start:end].&nbsp;&nbsp;Optional&nbsp;arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are<br>
+interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-encode"><strong>encode</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-encode">encode</a>(encoding='utf-8',&nbsp;errors='strict')&nbsp;-&gt;&nbsp;bytes<br>
+&nbsp;<br>
+Encode&nbsp;S&nbsp;using&nbsp;the&nbsp;codec&nbsp;registered&nbsp;for&nbsp;encoding.&nbsp;Default&nbsp;encoding<br>
+is&nbsp;'utf-8'.&nbsp;errors&nbsp;may&nbsp;be&nbsp;given&nbsp;to&nbsp;set&nbsp;a&nbsp;different&nbsp;error<br>
+handling&nbsp;scheme.&nbsp;Default&nbsp;is&nbsp;'strict'&nbsp;meaning&nbsp;that&nbsp;encoding&nbsp;errors&nbsp;raise<br>
+a&nbsp;UnicodeEncodeError.&nbsp;Other&nbsp;possible&nbsp;values&nbsp;are&nbsp;'ignore',&nbsp;'replace'&nbsp;and<br>
+'xmlcharrefreplace'&nbsp;as&nbsp;well&nbsp;as&nbsp;any&nbsp;other&nbsp;name&nbsp;registered&nbsp;with<br>
+codecs.register_error&nbsp;that&nbsp;can&nbsp;handle&nbsp;UnicodeEncodeErrors.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-endswith"><strong>endswith</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-endswith">endswith</a>(suffix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;ends&nbsp;with&nbsp;the&nbsp;specified&nbsp;suffix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+suffix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-expandtabs"><strong>expandtabs</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-expandtabs">expandtabs</a>(tabsize=8)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;where&nbsp;all&nbsp;tab&nbsp;characters&nbsp;are&nbsp;expanded&nbsp;using&nbsp;spaces.<br>
+If&nbsp;tabsize&nbsp;is&nbsp;not&nbsp;given,&nbsp;a&nbsp;tab&nbsp;size&nbsp;of&nbsp;8&nbsp;characters&nbsp;is&nbsp;assumed.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-find"><strong>find</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-find">find</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;lowest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-format"><strong>format</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-format">format</a>(*args,&nbsp;**kwargs)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S,&nbsp;using&nbsp;substitutions&nbsp;from&nbsp;args&nbsp;and&nbsp;kwargs.<br>
+The&nbsp;substitutions&nbsp;are&nbsp;identified&nbsp;by&nbsp;braces&nbsp;('{'&nbsp;and&nbsp;'}').</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-format_map"><strong>format_map</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-format_map">format_map</a>(mapping)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S,&nbsp;using&nbsp;substitutions&nbsp;from&nbsp;mapping.<br>
+The&nbsp;substitutions&nbsp;are&nbsp;identified&nbsp;by&nbsp;braces&nbsp;('{'&nbsp;and&nbsp;'}').</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-index"><strong>index</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-index">index</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;lowest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,&nbsp;<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Raises&nbsp;ValueError&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isalnum"><strong>isalnum</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isalnum">isalnum</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphanumeric<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isalpha"><strong>isalpha</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isalpha">isalpha</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphabetic<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isdecimal"><strong>isdecimal</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isdecimal">isdecimal</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;only&nbsp;decimal&nbsp;characters&nbsp;in&nbsp;S,<br>
+False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isdigit"><strong>isdigit</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isdigit">isdigit</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;digits<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isidentifier"><strong>isidentifier</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isidentifier">isidentifier</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;is&nbsp;a&nbsp;valid&nbsp;identifier&nbsp;according<br>
+to&nbsp;the&nbsp;language&nbsp;definition.<br>
+&nbsp;<br>
+Use&nbsp;keyword.iskeyword()&nbsp;to&nbsp;test&nbsp;for&nbsp;reserved&nbsp;identifiers<br>
+such&nbsp;as&nbsp;"def"&nbsp;and&nbsp;"class".</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-islower"><strong>islower</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-islower">islower</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;lowercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isnumeric"><strong>isnumeric</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isnumeric">isnumeric</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;only&nbsp;numeric&nbsp;characters&nbsp;in&nbsp;S,<br>
+False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isprintable"><strong>isprintable</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isprintable">isprintable</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;considered<br>
+printable&nbsp;in&nbsp;repr()&nbsp;or&nbsp;S&nbsp;is&nbsp;empty,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isspace"><strong>isspace</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isspace">isspace</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;whitespace<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-istitle"><strong>istitle</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-istitle">istitle</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;is&nbsp;a&nbsp;titlecased&nbsp;string&nbsp;and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one<br>
+character&nbsp;in&nbsp;S,&nbsp;i.e.&nbsp;upper-&nbsp;and&nbsp;titlecase&nbsp;characters&nbsp;may&nbsp;only<br>
+follow&nbsp;uncased&nbsp;characters&nbsp;and&nbsp;lowercase&nbsp;characters&nbsp;only&nbsp;cased&nbsp;ones.<br>
+Return&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-isupper"><strong>isupper</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-isupper">isupper</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;uppercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-join"><strong>join</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-join">join</a>(iterable)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;string&nbsp;which&nbsp;is&nbsp;the&nbsp;concatenation&nbsp;of&nbsp;the&nbsp;strings&nbsp;in&nbsp;the<br>
+iterable.&nbsp;&nbsp;The&nbsp;separator&nbsp;between&nbsp;elements&nbsp;is&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-ljust"><strong>ljust</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-ljust">ljust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;left-justified&nbsp;in&nbsp;a&nbsp;Unicode&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-lower"><strong>lower</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-lower">lower</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;converted&nbsp;to&nbsp;lowercase.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-lstrip"><strong>lstrip</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-lstrip">lstrip</a>([chars])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-partition"><strong>partition</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-partition">partition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;and&nbsp;return&nbsp;the&nbsp;part&nbsp;before&nbsp;it,<br>
+the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the&nbsp;separator&nbsp;is&nbsp;not<br>
+found,&nbsp;return&nbsp;S&nbsp;and&nbsp;two&nbsp;empty&nbsp;strings.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-replace"><strong>replace</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-replace">replace</a>(old,&nbsp;new[,&nbsp;count])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;with&nbsp;all&nbsp;occurrences&nbsp;of&nbsp;substring<br>
+old&nbsp;replaced&nbsp;by&nbsp;new.&nbsp;&nbsp;If&nbsp;the&nbsp;optional&nbsp;argument&nbsp;count&nbsp;is<br>
+given,&nbsp;only&nbsp;the&nbsp;first&nbsp;count&nbsp;occurrences&nbsp;are&nbsp;replaced.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-rfind"><strong>rfind</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-rfind">rfind</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;highest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-rindex"><strong>rindex</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-rindex">rindex</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;highest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Raises&nbsp;ValueError&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-rjust"><strong>rjust</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-rjust">rjust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;right-justified&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space).</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-rpartition"><strong>rpartition</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-rpartition">rpartition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;S,&nbsp;and&nbsp;return<br>
+the&nbsp;part&nbsp;before&nbsp;it,&nbsp;the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the<br>
+separator&nbsp;is&nbsp;not&nbsp;found,&nbsp;return&nbsp;two&nbsp;empty&nbsp;strings&nbsp;and&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-rsplit"><strong>rsplit</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-rsplit">rsplit</a>(sep=None,&nbsp;maxsplit=-1)&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;string&nbsp;and<br>
+working&nbsp;to&nbsp;the&nbsp;front.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit<br>
+splits&nbsp;are&nbsp;done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified,&nbsp;any&nbsp;whitespace&nbsp;string<br>
+is&nbsp;a&nbsp;separator.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-rstrip"><strong>rstrip</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-rstrip">rstrip</a>([chars])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;trailing&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-split"><strong>split</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-split">split</a>(sep=None,&nbsp;maxsplit=-1)&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit<br>
+splits&nbsp;are&nbsp;done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified&nbsp;or&nbsp;is&nbsp;None,&nbsp;any<br>
+whitespace&nbsp;string&nbsp;is&nbsp;a&nbsp;separator&nbsp;and&nbsp;empty&nbsp;strings&nbsp;are<br>
+removed&nbsp;from&nbsp;the&nbsp;result.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-splitlines"><strong>splitlines</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-splitlines">splitlines</a>([keepends])&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;lines&nbsp;in&nbsp;S,&nbsp;breaking&nbsp;at&nbsp;line&nbsp;boundaries.<br>
+Line&nbsp;breaks&nbsp;are&nbsp;not&nbsp;included&nbsp;in&nbsp;the&nbsp;resulting&nbsp;list&nbsp;unless&nbsp;keepends<br>
+is&nbsp;given&nbsp;and&nbsp;true.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-startswith"><strong>startswith</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-startswith">startswith</a>(prefix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;starts&nbsp;with&nbsp;the&nbsp;specified&nbsp;prefix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+prefix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-strip"><strong>strip</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-strip">strip</a>([chars])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;and&nbsp;trailing<br>
+whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-swapcase"><strong>swapcase</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-swapcase">swapcase</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;with&nbsp;uppercase&nbsp;characters&nbsp;converted&nbsp;to&nbsp;lowercase<br>
+and&nbsp;vice&nbsp;versa.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-title"><strong>title</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-title">title</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;titlecased&nbsp;version&nbsp;of&nbsp;S,&nbsp;i.e.&nbsp;words&nbsp;start&nbsp;with&nbsp;title&nbsp;case<br>
+characters,&nbsp;all&nbsp;remaining&nbsp;cased&nbsp;characters&nbsp;have&nbsp;lower&nbsp;case.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-translate"><strong>translate</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-translate">translate</a>(table)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;in&nbsp;which&nbsp;each&nbsp;character&nbsp;has&nbsp;been&nbsp;mapped<br>
+through&nbsp;the&nbsp;given&nbsp;translation&nbsp;table.&nbsp;The&nbsp;table&nbsp;must&nbsp;implement<br>
+lookup/indexing&nbsp;via&nbsp;__getitem__,&nbsp;for&nbsp;instance&nbsp;a&nbsp;dictionary&nbsp;or&nbsp;list,<br>
+mapping&nbsp;Unicode&nbsp;ordinals&nbsp;to&nbsp;Unicode&nbsp;ordinals,&nbsp;strings,&nbsp;or&nbsp;None.&nbsp;If<br>
+this&nbsp;operation&nbsp;raises&nbsp;LookupError,&nbsp;the&nbsp;character&nbsp;is&nbsp;left&nbsp;untouched.<br>
+Characters&nbsp;mapped&nbsp;to&nbsp;None&nbsp;are&nbsp;deleted.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-upper"><strong>upper</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-upper">upper</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;converted&nbsp;to&nbsp;uppercase.</tt></dd></dl>
+
+<dl><dt><a name="CaseInsensitivePattern-zfill"><strong>zfill</strong></a>(...)</dt><dd><tt>S.<a href="#CaseInsensitivePattern-zfill">zfill</a>(width)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Pad&nbsp;a&nbsp;numeric&nbsp;string&nbsp;S&nbsp;with&nbsp;zeros&nbsp;on&nbsp;the&nbsp;left,&nbsp;to&nbsp;fill&nbsp;a&nbsp;field<br>
+of&nbsp;the&nbsp;specified&nbsp;width.&nbsp;The&nbsp;string&nbsp;S&nbsp;is&nbsp;never&nbsp;truncated.</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#str">builtins.str</a>:<br>
+<dl><dt><a name="CaseInsensitivePattern-maketrans"><strong>maketrans</strong></a>(x, y=None, z=None, /)</dt><dd><tt>Return&nbsp;a&nbsp;translation&nbsp;table&nbsp;usable&nbsp;for&nbsp;<a href="builtins.html#str">str</a>.<a href="#CaseInsensitivePattern-translate">translate</a>().<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;only&nbsp;one&nbsp;argument,&nbsp;it&nbsp;must&nbsp;be&nbsp;a&nbsp;dictionary&nbsp;mapping&nbsp;Unicode<br>
+ordinals&nbsp;(integers)&nbsp;or&nbsp;characters&nbsp;to&nbsp;Unicode&nbsp;ordinals,&nbsp;strings&nbsp;or&nbsp;None.<br>
+Character&nbsp;keys&nbsp;will&nbsp;be&nbsp;then&nbsp;converted&nbsp;to&nbsp;ordinals.<br>
+If&nbsp;there&nbsp;are&nbsp;two&nbsp;arguments,&nbsp;they&nbsp;must&nbsp;be&nbsp;strings&nbsp;of&nbsp;equal&nbsp;length,&nbsp;and<br>
+in&nbsp;the&nbsp;resulting&nbsp;dictionary,&nbsp;each&nbsp;character&nbsp;in&nbsp;x&nbsp;will&nbsp;be&nbsp;mapped&nbsp;to&nbsp;the<br>
+character&nbsp;at&nbsp;the&nbsp;same&nbsp;position&nbsp;in&nbsp;y.&nbsp;If&nbsp;there&nbsp;is&nbsp;a&nbsp;third&nbsp;argument,&nbsp;it<br>
+must&nbsp;be&nbsp;a&nbsp;string,&nbsp;whose&nbsp;characters&nbsp;will&nbsp;be&nbsp;mapped&nbsp;to&nbsp;None&nbsp;in&nbsp;the&nbsp;result.</tt></dd></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Path">class <strong>Path</strong></a>(<a href="builtins.html#str">builtins.str</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Represents&nbsp;a&nbsp;filesystem&nbsp;path.<br>
+&nbsp;<br>
+For&nbsp;documentation&nbsp;on&nbsp;individual&nbsp;methods,&nbsp;consult&nbsp;their<br>
+counterparts&nbsp;in&nbsp;:mod:`os.path`.<br>
+&nbsp;<br>
+Some&nbsp;methods&nbsp;are&nbsp;additionally&nbsp;included&nbsp;from&nbsp;:mod:`shutil`.<br>
+The&nbsp;functions&nbsp;are&nbsp;linked&nbsp;directly&nbsp;into&nbsp;the&nbsp;class&nbsp;namespace<br>
+such&nbsp;that&nbsp;they&nbsp;will&nbsp;be&nbsp;bound&nbsp;to&nbsp;the&nbsp;<a href="#Path">Path</a>&nbsp;instance.&nbsp;For&nbsp;example,<br>
+``<a href="#Path">Path</a>(src).<a href="#Path-copy">copy</a>(target)``&nbsp;is&nbsp;equivalent&nbsp;to<br>
+``shutil.<a href="#Path-copy">copy</a>(src,&nbsp;target)``.&nbsp;Therefore,&nbsp;when&nbsp;referencing<br>
+the&nbsp;docs&nbsp;for&nbsp;these&nbsp;methods,&nbsp;assume&nbsp;`src`&nbsp;references&nbsp;`self`,<br>
+the&nbsp;<a href="#Path">Path</a>&nbsp;instance.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="path.html#Path">Path</a></dd>
+<dd><a href="builtins.html#str">builtins.str</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Path-__add__"><strong>__add__</strong></a>(self, more)</dt><dd><tt>Return&nbsp;self+value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__div__"><strong>__div__</strong></a>(self, rel)</dt><dd><tt>fp.<a href="#Path-__div__">__div__</a>(rel)&nbsp;==&nbsp;fp&nbsp;/&nbsp;rel&nbsp;==&nbsp;fp.<a href="#Path-joinpath">joinpath</a>(rel)<br>
+&nbsp;<br>
+Join&nbsp;two&nbsp;path&nbsp;components,&nbsp;adding&nbsp;a&nbsp;separator&nbsp;character&nbsp;if<br>
+needed.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.path.join`</tt></dd></dl>
+
+<dl><dt><a name="Path-__enter__"><strong>__enter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Path-__exit__"><strong>__exit__</strong></a>(self, *_)</dt></dl>
+
+<dl><dt><a name="Path-__fspath__"><strong>__fspath__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Path-__init__"><strong>__init__</strong></a>(self, other='')</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Path-__radd__"><strong>__radd__</strong></a>(self, other)</dt></dl>
+
+<dl><dt><a name="Path-__rdiv__"><strong>__rdiv__</strong></a>(self, rel)</dt><dd><tt>fp.<a href="#Path-__rdiv__">__rdiv__</a>(rel)&nbsp;==&nbsp;rel&nbsp;/&nbsp;fp<br>
+&nbsp;<br>
+Join&nbsp;two&nbsp;path&nbsp;components,&nbsp;adding&nbsp;a&nbsp;separator&nbsp;character&nbsp;if<br>
+needed.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.path.join`</tt></dd></dl>
+
+<dl><dt><a name="Path-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Path-__rtruediv__"><strong>__rtruediv__</strong></a> = <a href="#Path-__rdiv__">__rdiv__</a>(self, rel)</dt></dl>
+
+<dl><dt><a name="Path-__truediv__"><strong>__truediv__</strong></a> = <a href="#Path-__div__">__div__</a>(self, rel)</dt></dl>
+
+<dl><dt><a name="Path-abspath"><strong>abspath</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.abspath`</tt></dd></dl>
+
+<dl><dt><a name="Path-access"><strong>access</strong></a>(self, mode)</dt><dd><tt>Return&nbsp;``True``&nbsp;if&nbsp;current&nbsp;user&nbsp;has&nbsp;access&nbsp;to&nbsp;this&nbsp;path.<br>
+&nbsp;<br>
+mode&nbsp;-&nbsp;One&nbsp;of&nbsp;the&nbsp;constants&nbsp;:data:`os.F_OK`,&nbsp;:data:`os.R_OK`,<br>
+:data:`os.W_OK`,&nbsp;:data:`os.X_OK`<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.access`</tt></dd></dl>
+
+<dl><dt><a name="Path-basename"><strong>basename</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:attr:`name`,&nbsp;:func:`os.path.basename`</tt></dd></dl>
+
+<dl><dt><a name="Path-bytes"><strong>bytes</strong></a>(self)</dt><dd><tt>Open&nbsp;this&nbsp;file,&nbsp;read&nbsp;all&nbsp;bytes,&nbsp;return&nbsp;them&nbsp;as&nbsp;a&nbsp;string.</tt></dd></dl>
+
+<dl><dt><a name="Path-cd"><strong>cd</strong></a> = <a href="#Path-chdir">chdir</a>(self)</dt></dl>
+
+<dl><dt><a name="Path-chdir"><strong>chdir</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.chdir`</tt></dd></dl>
+
+<dl><dt><a name="Path-chmod"><strong>chmod</strong></a>(self, mode)</dt><dd><tt>Set&nbsp;the&nbsp;mode.&nbsp;May&nbsp;be&nbsp;the&nbsp;new&nbsp;mode&nbsp;(os.chmod&nbsp;behavior)&nbsp;or&nbsp;a&nbsp;`symbolic<br>
+mode&nbsp;&lt;<a href="http://en.wikipedia.org/wiki/Chmod#Symbolic_modes&gt;`_">http://en.wikipedia.org/wiki/Chmod#Symbolic_modes&gt;`_</a>.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.chmod`</tt></dd></dl>
+
+<dl><dt><a name="Path-chown"><strong>chown</strong></a>(self, uid=-1, gid=-1)</dt><dd><tt>Change&nbsp;the&nbsp;owner&nbsp;and&nbsp;group&nbsp;by&nbsp;names&nbsp;rather&nbsp;than&nbsp;the&nbsp;uid&nbsp;or&nbsp;gid&nbsp;numbers.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.chown`</tt></dd></dl>
+
+<dl><dt><a name="Path-chroot"><strong>chroot</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.chroot`</tt></dd></dl>
+
+<dl><dt><a name="Path-chunks"><strong>chunks</strong></a>(self, size, *args, **kwargs)</dt><dd><tt>Returns&nbsp;a&nbsp;generator&nbsp;yielding&nbsp;chunks&nbsp;of&nbsp;the&nbsp;file,&nbsp;so&nbsp;it&nbsp;can<br>
+&nbsp;be&nbsp;read&nbsp;piece&nbsp;by&nbsp;piece&nbsp;with&nbsp;a&nbsp;simple&nbsp;for&nbsp;loop.<br>
+&nbsp;<br>
+Any&nbsp;argument&nbsp;you&nbsp;pass&nbsp;after&nbsp;`size`&nbsp;will&nbsp;be&nbsp;passed&nbsp;to&nbsp;:meth:`open`.<br>
+&nbsp;<br>
+:example:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;hash&nbsp;=&nbsp;hashlib.md5()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;for&nbsp;chunk&nbsp;in&nbsp;<a href="#Path">Path</a>("path.py").<a href="#Path-chunks">chunks</a>(8192,&nbsp;mode='rb'):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hash.update(chunk)<br>
+&nbsp;<br>
+&nbsp;This&nbsp;will&nbsp;read&nbsp;the&nbsp;file&nbsp;by&nbsp;chunks&nbsp;of&nbsp;8192&nbsp;bytes.</tt></dd></dl>
+
+<dl><dt><a name="Path-copy"><strong>copy</strong></a>(src, dst, *, follow_symlinks=True)</dt><dd><tt>Copy&nbsp;data&nbsp;and&nbsp;mode&nbsp;bits&nbsp;("cp&nbsp;src&nbsp;dst").&nbsp;Return&nbsp;the&nbsp;file's&nbsp;destination.<br>
+&nbsp;<br>
+The&nbsp;destination&nbsp;may&nbsp;be&nbsp;a&nbsp;directory.<br>
+&nbsp;<br>
+If&nbsp;follow_symlinks&nbsp;is&nbsp;false,&nbsp;symlinks&nbsp;won't&nbsp;be&nbsp;followed.&nbsp;This<br>
+resembles&nbsp;GNU's&nbsp;"cp&nbsp;-P&nbsp;src&nbsp;dst".<br>
+&nbsp;<br>
+If&nbsp;source&nbsp;and&nbsp;destination&nbsp;are&nbsp;the&nbsp;same&nbsp;file,&nbsp;a&nbsp;SameFileError&nbsp;will&nbsp;be<br>
+raised.</tt></dd></dl>
+
+<dl><dt><a name="Path-copy2"><strong>copy2</strong></a>(src, dst, *, follow_symlinks=True)</dt><dd><tt>Copy&nbsp;data&nbsp;and&nbsp;all&nbsp;stat&nbsp;info&nbsp;("cp&nbsp;-p&nbsp;src&nbsp;dst").&nbsp;Return&nbsp;the&nbsp;file's<br>
+destination."<br>
+&nbsp;<br>
+The&nbsp;destination&nbsp;may&nbsp;be&nbsp;a&nbsp;directory.<br>
+&nbsp;<br>
+If&nbsp;follow_symlinks&nbsp;is&nbsp;false,&nbsp;symlinks&nbsp;won't&nbsp;be&nbsp;followed.&nbsp;This<br>
+resembles&nbsp;GNU's&nbsp;"cp&nbsp;-P&nbsp;src&nbsp;dst".</tt></dd></dl>
+
+<dl><dt><a name="Path-copyfile"><strong>copyfile</strong></a>(src, dst, *, follow_symlinks=True)</dt><dd><tt>Copy&nbsp;data&nbsp;from&nbsp;src&nbsp;to&nbsp;dst.<br>
+&nbsp;<br>
+If&nbsp;follow_symlinks&nbsp;is&nbsp;not&nbsp;set&nbsp;and&nbsp;src&nbsp;is&nbsp;a&nbsp;symbolic&nbsp;link,&nbsp;a&nbsp;new<br>
+symlink&nbsp;will&nbsp;be&nbsp;created&nbsp;instead&nbsp;of&nbsp;copying&nbsp;the&nbsp;file&nbsp;it&nbsp;points&nbsp;to.</tt></dd></dl>
+
+<dl><dt><a name="Path-copymode"><strong>copymode</strong></a>(src, dst, *, follow_symlinks=True)</dt><dd><tt>Copy&nbsp;mode&nbsp;bits&nbsp;from&nbsp;src&nbsp;to&nbsp;dst.<br>
+&nbsp;<br>
+If&nbsp;follow_symlinks&nbsp;is&nbsp;not&nbsp;set,&nbsp;symlinks&nbsp;aren't&nbsp;followed&nbsp;if&nbsp;and&nbsp;only<br>
+if&nbsp;both&nbsp;`src`&nbsp;and&nbsp;`dst`&nbsp;are&nbsp;symlinks.&nbsp;&nbsp;If&nbsp;`lchmod`&nbsp;isn't&nbsp;available<br>
+(e.g.&nbsp;Linux)&nbsp;this&nbsp;method&nbsp;does&nbsp;nothing.</tt></dd></dl>
+
+<dl><dt><a name="Path-copystat"><strong>copystat</strong></a>(src, dst, *, follow_symlinks=True)</dt><dd><tt>Copy&nbsp;all&nbsp;stat&nbsp;info&nbsp;(mode&nbsp;bits,&nbsp;atime,&nbsp;mtime,&nbsp;flags)&nbsp;from&nbsp;src&nbsp;to&nbsp;dst.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;optional&nbsp;flag&nbsp;`follow_symlinks`&nbsp;is&nbsp;not&nbsp;set,&nbsp;symlinks&nbsp;aren't&nbsp;followed&nbsp;if&nbsp;and<br>
+only&nbsp;if&nbsp;both&nbsp;`src`&nbsp;and&nbsp;`dst`&nbsp;are&nbsp;symlinks.</tt></dd></dl>
+
+<dl><dt><a name="Path-copytree"><strong>copytree</strong></a>(src, dst, symlinks=False, ignore=None, copy_function=&lt;function copy2 at 0x10cd20b70&gt;, ignore_dangling_symlinks=False)</dt><dd><tt>Recursively&nbsp;copy&nbsp;a&nbsp;directory&nbsp;tree.<br>
+&nbsp;<br>
+The&nbsp;destination&nbsp;directory&nbsp;must&nbsp;not&nbsp;already&nbsp;exist.<br>
+If&nbsp;exception(s)&nbsp;occur,&nbsp;an&nbsp;Error&nbsp;is&nbsp;raised&nbsp;with&nbsp;a&nbsp;list&nbsp;of&nbsp;reasons.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;optional&nbsp;symlinks&nbsp;flag&nbsp;is&nbsp;true,&nbsp;symbolic&nbsp;links&nbsp;in&nbsp;the<br>
+source&nbsp;tree&nbsp;result&nbsp;in&nbsp;symbolic&nbsp;links&nbsp;in&nbsp;the&nbsp;destination&nbsp;tree;&nbsp;if<br>
+it&nbsp;is&nbsp;false,&nbsp;the&nbsp;contents&nbsp;of&nbsp;the&nbsp;files&nbsp;pointed&nbsp;to&nbsp;by&nbsp;symbolic<br>
+links&nbsp;are&nbsp;copied.&nbsp;If&nbsp;the&nbsp;file&nbsp;pointed&nbsp;by&nbsp;the&nbsp;symlink&nbsp;doesn't<br>
+exist,&nbsp;an&nbsp;exception&nbsp;will&nbsp;be&nbsp;added&nbsp;in&nbsp;the&nbsp;list&nbsp;of&nbsp;errors&nbsp;raised&nbsp;in<br>
+an&nbsp;Error&nbsp;exception&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;copy&nbsp;process.<br>
+&nbsp;<br>
+You&nbsp;can&nbsp;set&nbsp;the&nbsp;optional&nbsp;ignore_dangling_symlinks&nbsp;flag&nbsp;to&nbsp;true&nbsp;if&nbsp;you<br>
+want&nbsp;to&nbsp;silence&nbsp;this&nbsp;exception.&nbsp;Notice&nbsp;that&nbsp;this&nbsp;has&nbsp;no&nbsp;effect&nbsp;on<br>
+platforms&nbsp;that&nbsp;don't&nbsp;support&nbsp;os.symlink.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;ignore&nbsp;argument&nbsp;is&nbsp;a&nbsp;callable.&nbsp;If&nbsp;given,&nbsp;it<br>
+is&nbsp;called&nbsp;with&nbsp;the&nbsp;`src`&nbsp;parameter,&nbsp;which&nbsp;is&nbsp;the&nbsp;directory<br>
+being&nbsp;visited&nbsp;by&nbsp;<a href="#Path-copytree">copytree</a>(),&nbsp;and&nbsp;`names`&nbsp;which&nbsp;is&nbsp;the&nbsp;list&nbsp;of<br>
+`src`&nbsp;contents,&nbsp;as&nbsp;returned&nbsp;by&nbsp;os.<a href="#Path-listdir">listdir</a>():<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;callable(src,&nbsp;names)&nbsp;-&gt;&nbsp;ignored_names<br>
+&nbsp;<br>
+Since&nbsp;<a href="#Path-copytree">copytree</a>()&nbsp;is&nbsp;called&nbsp;recursively,&nbsp;the&nbsp;callable&nbsp;will&nbsp;be<br>
+called&nbsp;once&nbsp;for&nbsp;each&nbsp;directory&nbsp;that&nbsp;is&nbsp;copied.&nbsp;It&nbsp;returns&nbsp;a<br>
+list&nbsp;of&nbsp;names&nbsp;relative&nbsp;to&nbsp;the&nbsp;`src`&nbsp;directory&nbsp;that&nbsp;should<br>
+not&nbsp;be&nbsp;copied.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;copy_function&nbsp;argument&nbsp;is&nbsp;a&nbsp;callable&nbsp;that&nbsp;will&nbsp;be&nbsp;used<br>
+to&nbsp;copy&nbsp;each&nbsp;file.&nbsp;It&nbsp;will&nbsp;be&nbsp;called&nbsp;with&nbsp;the&nbsp;source&nbsp;path&nbsp;and&nbsp;the<br>
+destination&nbsp;path&nbsp;as&nbsp;arguments.&nbsp;By&nbsp;default,&nbsp;<a href="#Path-copy2">copy2</a>()&nbsp;is&nbsp;used,&nbsp;but&nbsp;any<br>
+function&nbsp;that&nbsp;supports&nbsp;the&nbsp;same&nbsp;signature&nbsp;(like&nbsp;<a href="#Path-copy">copy</a>())&nbsp;can&nbsp;be&nbsp;used.</tt></dd></dl>
+
+<dl><dt><a name="Path-dirname"><strong>dirname</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:attr:`parent`,&nbsp;:func:`os.path.dirname`</tt></dd></dl>
+
+<dl><dt><a name="Path-dirs"><strong>dirs</strong></a>(self, pattern=None)</dt><dd><tt>D.<a href="#Path-dirs">dirs</a>()&nbsp;-&gt;&nbsp;List&nbsp;of&nbsp;this&nbsp;directory's&nbsp;subdirectories.<br>
+&nbsp;<br>
+The&nbsp;elements&nbsp;of&nbsp;the&nbsp;list&nbsp;are&nbsp;<a href="#Path">Path</a>&nbsp;objects.<br>
+This&nbsp;does&nbsp;not&nbsp;walk&nbsp;recursively&nbsp;into&nbsp;subdirectories<br>
+(but&nbsp;see&nbsp;:meth:`walkdirs`).<br>
+&nbsp;<br>
+With&nbsp;the&nbsp;optional&nbsp;`pattern`&nbsp;argument,&nbsp;this&nbsp;only&nbsp;lists<br>
+directories&nbsp;whose&nbsp;names&nbsp;match&nbsp;the&nbsp;given&nbsp;pattern.&nbsp;&nbsp;For<br>
+example,&nbsp;``d.<a href="#Path-dirs">dirs</a>('build-*')``.</tt></dd></dl>
+
+<dl><dt><a name="Path-exists"><strong>exists</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.exists`</tt></dd></dl>
+
+<dl><dt><a name="Path-expand"><strong>expand</strong></a>(self)</dt><dd><tt>Clean&nbsp;up&nbsp;a&nbsp;filename&nbsp;by&nbsp;calling&nbsp;:meth:`<a href="#Path-expandvars">expandvars</a>()`,<br>
+:meth:`<a href="#Path-expanduser">expanduser</a>()`,&nbsp;and&nbsp;:meth:`<a href="#Path-normpath">normpath</a>()`&nbsp;on&nbsp;it.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;commonly&nbsp;everything&nbsp;needed&nbsp;to&nbsp;clean&nbsp;up&nbsp;a&nbsp;filename<br>
+read&nbsp;from&nbsp;a&nbsp;configuration&nbsp;file,&nbsp;for&nbsp;example.</tt></dd></dl>
+
+<dl><dt><a name="Path-expanduser"><strong>expanduser</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.expanduser`</tt></dd></dl>
+
+<dl><dt><a name="Path-expandvars"><strong>expandvars</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.expandvars`</tt></dd></dl>
+
+<dl><dt><a name="Path-files"><strong>files</strong></a>(self, pattern=None)</dt><dd><tt>D.<a href="#Path-files">files</a>()&nbsp;-&gt;&nbsp;List&nbsp;of&nbsp;the&nbsp;files&nbsp;in&nbsp;this&nbsp;directory.<br>
+&nbsp;<br>
+The&nbsp;elements&nbsp;of&nbsp;the&nbsp;list&nbsp;are&nbsp;<a href="#Path">Path</a>&nbsp;objects.<br>
+This&nbsp;does&nbsp;not&nbsp;walk&nbsp;into&nbsp;subdirectories&nbsp;(see&nbsp;:meth:`walkfiles`).<br>
+&nbsp;<br>
+With&nbsp;the&nbsp;optional&nbsp;`pattern`&nbsp;argument,&nbsp;this&nbsp;only&nbsp;lists&nbsp;files<br>
+whose&nbsp;names&nbsp;match&nbsp;the&nbsp;given&nbsp;pattern.&nbsp;&nbsp;For&nbsp;example,<br>
+``d.<a href="#Path-files">files</a>('*.pyc')``.</tt></dd></dl>
+
+<dl><dt><a name="Path-fnmatch"><strong>fnmatch</strong></a>(self, pattern, normcase=None)</dt><dd><tt>Return&nbsp;``True``&nbsp;if&nbsp;`self.<strong>name</strong>`&nbsp;matches&nbsp;the&nbsp;given&nbsp;`pattern`.<br>
+&nbsp;<br>
+`pattern`&nbsp;-&nbsp;A&nbsp;filename&nbsp;pattern&nbsp;with&nbsp;wildcards,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;example&nbsp;``'*.py'``.&nbsp;If&nbsp;the&nbsp;pattern&nbsp;contains&nbsp;a&nbsp;`normcase`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attribute,&nbsp;it&nbsp;is&nbsp;applied&nbsp;to&nbsp;the&nbsp;name&nbsp;and&nbsp;path&nbsp;prior&nbsp;to&nbsp;comparison.<br>
+&nbsp;<br>
+`normcase`&nbsp;-&nbsp;(optional)&nbsp;A&nbsp;function&nbsp;used&nbsp;to&nbsp;normalize&nbsp;the&nbsp;pattern&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filename&nbsp;before&nbsp;matching.&nbsp;Defaults&nbsp;to&nbsp;:meth:`self.<strong>module</strong>`,&nbsp;which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;to&nbsp;:meth:`os.path.normcase`.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`fnmatch.fnmatch`</tt></dd></dl>
+
+<dl><dt><a name="Path-get_owner"><strong>get_owner</strong></a> = __get_owner_unix(self)</dt><dd><tt>Return&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;owner&nbsp;of&nbsp;this&nbsp;file&nbsp;or&nbsp;directory.&nbsp;Follow<br>
+symbolic&nbsp;links.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:attr:`owner`</tt></dd></dl>
+
+<dl><dt><a name="Path-getatime"><strong>getatime</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:attr:`atime`,&nbsp;:func:`os.path.getatime`</tt></dd></dl>
+
+<dl><dt><a name="Path-getctime"><strong>getctime</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:attr:`ctime`,&nbsp;:func:`os.path.getctime`</tt></dd></dl>
+
+<dl><dt><a name="Path-getmtime"><strong>getmtime</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:attr:`mtime`,&nbsp;:func:`os.path.getmtime`</tt></dd></dl>
+
+<dl><dt><a name="Path-getsize"><strong>getsize</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:attr:`size`,&nbsp;:func:`os.path.getsize`</tt></dd></dl>
+
+<dl><dt><a name="Path-glob"><strong>glob</strong></a>(self, pattern)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;<a href="#Path">Path</a>&nbsp;objects&nbsp;that&nbsp;match&nbsp;the&nbsp;pattern.<br>
+&nbsp;<br>
+`pattern`&nbsp;-&nbsp;a&nbsp;path&nbsp;relative&nbsp;to&nbsp;this&nbsp;directory,&nbsp;with&nbsp;wildcards.<br>
+&nbsp;<br>
+For&nbsp;example,&nbsp;``<a href="#Path">Path</a>('/users').<a href="#Path-glob">glob</a>('*/bin/*')``&nbsp;returns&nbsp;a&nbsp;list<br>
+of&nbsp;all&nbsp;the&nbsp;files&nbsp;users&nbsp;have&nbsp;in&nbsp;their&nbsp;:file:`bin`&nbsp;directories.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`glob.glob`</tt></dd></dl>
+
+<dl><dt><a name="Path-in_place"><strong>in_place</strong></a>(self, mode='r', buffering=-1, encoding=None, errors=None, newline=None, backup_extension=None)</dt><dd><tt>A&nbsp;context&nbsp;in&nbsp;which&nbsp;a&nbsp;file&nbsp;may&nbsp;be&nbsp;re-written&nbsp;in-place&nbsp;with<br>
+new&nbsp;content.<br>
+&nbsp;<br>
+Yields&nbsp;a&nbsp;tuple&nbsp;of&nbsp;:samp:`({readable},&nbsp;{writable})`&nbsp;file<br>
+objects,&nbsp;where&nbsp;`writable`&nbsp;replaces&nbsp;`readable`.<br>
+&nbsp;<br>
+If&nbsp;an&nbsp;exception&nbsp;occurs,&nbsp;the&nbsp;old&nbsp;file&nbsp;is&nbsp;restored,&nbsp;removing&nbsp;the<br>
+written&nbsp;data.<br>
+&nbsp;<br>
+Mode&nbsp;*must&nbsp;not*&nbsp;use&nbsp;``'w'``,&nbsp;``'a'``,&nbsp;or&nbsp;``'+'``;&nbsp;only<br>
+read-only-modes&nbsp;are&nbsp;allowed.&nbsp;A&nbsp;:exc:`ValueError`&nbsp;is&nbsp;raised<br>
+on&nbsp;invalid&nbsp;modes.<br>
+&nbsp;<br>
+For&nbsp;example,&nbsp;to&nbsp;add&nbsp;line&nbsp;numbers&nbsp;to&nbsp;a&nbsp;file::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;=&nbsp;<a href="#Path">Path</a>(filename)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;assert&nbsp;p.<a href="#Path-isfile">isfile</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;p.<a href="#Path-in_place">in_place</a>()&nbsp;as&nbsp;(reader,&nbsp;writer):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;number,&nbsp;line&nbsp;in&nbsp;enumerate(reader,&nbsp;1):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer.write('{0:3}:&nbsp;'.<a href="#Path-format">format</a>(number)))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer.write(line)<br>
+&nbsp;<br>
+Thereafter,&nbsp;the&nbsp;file&nbsp;at&nbsp;`filename`&nbsp;will&nbsp;have&nbsp;line&nbsp;numbers&nbsp;in&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="Path-isabs"><strong>isabs</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.isabs`</tt></dd></dl>
+
+<dl><dt><a name="Path-isdir"><strong>isdir</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.isdir`</tt></dd></dl>
+
+<dl><dt><a name="Path-isfile"><strong>isfile</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.isfile`</tt></dd></dl>
+
+<dl><dt><a name="Path-islink"><strong>islink</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.islink`</tt></dd></dl>
+
+<dl><dt><a name="Path-ismount"><strong>ismount</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.ismount`</tt></dd></dl>
+
+<dl><dt><a name="Path-lines"><strong>lines</strong></a>(self, encoding=None, errors='strict', retain=True)</dt><dd><tt>Open&nbsp;this&nbsp;file,&nbsp;read&nbsp;all&nbsp;lines,&nbsp;return&nbsp;them&nbsp;in&nbsp;a&nbsp;list.<br>
+&nbsp;<br>
+Optional&nbsp;arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`encoding`&nbsp;-&nbsp;The&nbsp;Unicode&nbsp;encoding&nbsp;(or&nbsp;character&nbsp;set)&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;file.&nbsp;&nbsp;The&nbsp;default&nbsp;is&nbsp;``None``,&nbsp;meaning&nbsp;the&nbsp;content<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;the&nbsp;file&nbsp;is&nbsp;read&nbsp;as&nbsp;8-bit&nbsp;characters&nbsp;and&nbsp;returned<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;(non-Unicode)&nbsp;<a href="builtins.html#str">str</a>&nbsp;objects.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`errors`&nbsp;-&nbsp;How&nbsp;to&nbsp;handle&nbsp;Unicode&nbsp;errors;&nbsp;see&nbsp;help(<a href="builtins.html#str">str</a>.decode)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;the&nbsp;options.&nbsp;&nbsp;Default&nbsp;is&nbsp;``'strict'``.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`retain`&nbsp;-&nbsp;If&nbsp;``True``,&nbsp;retain&nbsp;newline&nbsp;characters;&nbsp;but&nbsp;all&nbsp;newline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;character&nbsp;combinations&nbsp;(``'\r'``,&nbsp;``'\n'``,&nbsp;``'\r\n'``)&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;translated&nbsp;to&nbsp;``'\n'``.&nbsp;&nbsp;If&nbsp;``False``,&nbsp;newline&nbsp;characters&nbsp;are<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stripped&nbsp;off.&nbsp;&nbsp;Default&nbsp;is&nbsp;``True``.<br>
+&nbsp;<br>
+This&nbsp;uses&nbsp;``'U'``&nbsp;mode.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`text`</tt></dd></dl>
+
+<dl><dt><a name="Path-link"><strong>link</strong></a>(self, newpath)</dt><dd><tt>Create&nbsp;a&nbsp;hard&nbsp;link&nbsp;at&nbsp;`newpath`,&nbsp;pointing&nbsp;to&nbsp;this&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.link`</tt></dd></dl>
+
+<dl><dt><a name="Path-listdir"><strong>listdir</strong></a>(self, pattern=None)</dt><dd><tt>D.<a href="#Path-listdir">listdir</a>()&nbsp;-&gt;&nbsp;List&nbsp;of&nbsp;items&nbsp;in&nbsp;this&nbsp;directory.<br>
+&nbsp;<br>
+Use&nbsp;:meth:`files`&nbsp;or&nbsp;:meth:`dirs`&nbsp;instead&nbsp;if&nbsp;you&nbsp;want&nbsp;a&nbsp;listing<br>
+of&nbsp;just&nbsp;files&nbsp;or&nbsp;just&nbsp;subdirectories.<br>
+&nbsp;<br>
+The&nbsp;elements&nbsp;of&nbsp;the&nbsp;list&nbsp;are&nbsp;<a href="#Path">Path</a>&nbsp;objects.<br>
+&nbsp;<br>
+With&nbsp;the&nbsp;optional&nbsp;`pattern`&nbsp;argument,&nbsp;this&nbsp;only&nbsp;lists<br>
+items&nbsp;whose&nbsp;names&nbsp;match&nbsp;the&nbsp;given&nbsp;pattern.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`files`,&nbsp;:meth:`dirs`</tt></dd></dl>
+
+<dl><dt><a name="Path-lstat"><strong>lstat</strong></a>(self)</dt><dd><tt>Like&nbsp;:meth:`stat`,&nbsp;but&nbsp;do&nbsp;not&nbsp;follow&nbsp;symbolic&nbsp;links.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`stat`,&nbsp;:func:`os.lstat`</tt></dd></dl>
+
+<dl><dt><a name="Path-makedirs"><strong>makedirs</strong></a>(self, mode=511)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.makedirs`</tt></dd></dl>
+
+<dl><dt><a name="Path-makedirs_p"><strong>makedirs_p</strong></a>(self, mode=511)</dt><dd><tt>Like&nbsp;:meth:`makedirs`,&nbsp;but&nbsp;does&nbsp;not&nbsp;raise&nbsp;an&nbsp;exception&nbsp;if&nbsp;the<br>
+directory&nbsp;already&nbsp;exists.</tt></dd></dl>
+
+<dl><dt><a name="Path-merge_tree"><strong>merge_tree</strong></a>(self, dst, symlinks=False, *args, **kwargs)</dt><dd><tt>Copy&nbsp;entire&nbsp;contents&nbsp;of&nbsp;self&nbsp;to&nbsp;dst,&nbsp;overwriting&nbsp;existing<br>
+contents&nbsp;in&nbsp;dst&nbsp;with&nbsp;those&nbsp;in&nbsp;self.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;additional&nbsp;keyword&nbsp;`update`&nbsp;is&nbsp;True,&nbsp;each<br>
+`src`&nbsp;will&nbsp;only&nbsp;be&nbsp;copied&nbsp;if&nbsp;`dst`&nbsp;does&nbsp;not&nbsp;exist,<br>
+or&nbsp;`src`&nbsp;is&nbsp;newer&nbsp;than&nbsp;`dst`.<br>
+&nbsp;<br>
+Note&nbsp;that&nbsp;the&nbsp;technique&nbsp;employed&nbsp;stages&nbsp;the&nbsp;files&nbsp;in&nbsp;a&nbsp;temporary<br>
+directory&nbsp;first,&nbsp;so&nbsp;this&nbsp;function&nbsp;is&nbsp;not&nbsp;suitable&nbsp;for&nbsp;merging<br>
+trees&nbsp;with&nbsp;large&nbsp;files,&nbsp;especially&nbsp;if&nbsp;the&nbsp;temporary&nbsp;directory<br>
+is&nbsp;not&nbsp;capable&nbsp;of&nbsp;storing&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;entire&nbsp;source&nbsp;tree.</tt></dd></dl>
+
+<dl><dt><a name="Path-mkdir"><strong>mkdir</strong></a>(self, mode=511)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.mkdir`</tt></dd></dl>
+
+<dl><dt><a name="Path-mkdir_p"><strong>mkdir_p</strong></a>(self, mode=511)</dt><dd><tt>Like&nbsp;:meth:`mkdir`,&nbsp;but&nbsp;does&nbsp;not&nbsp;raise&nbsp;an&nbsp;exception&nbsp;if&nbsp;the<br>
+directory&nbsp;already&nbsp;exists.</tt></dd></dl>
+
+<dl><dt><a name="Path-move"><strong>move</strong></a>(src, dst, copy_function=&lt;function copy2 at 0x10cd20b70&gt;)</dt><dd><tt>Recursively&nbsp;move&nbsp;a&nbsp;file&nbsp;or&nbsp;directory&nbsp;to&nbsp;another&nbsp;location.&nbsp;This&nbsp;is<br>
+similar&nbsp;to&nbsp;the&nbsp;Unix&nbsp;"mv"&nbsp;command.&nbsp;Return&nbsp;the&nbsp;file&nbsp;or&nbsp;directory's<br>
+destination.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;destination&nbsp;is&nbsp;a&nbsp;directory&nbsp;or&nbsp;a&nbsp;symlink&nbsp;to&nbsp;a&nbsp;directory,&nbsp;the&nbsp;source<br>
+is&nbsp;moved&nbsp;inside&nbsp;the&nbsp;directory.&nbsp;The&nbsp;destination&nbsp;path&nbsp;must&nbsp;not&nbsp;already<br>
+exist.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;destination&nbsp;already&nbsp;exists&nbsp;but&nbsp;is&nbsp;not&nbsp;a&nbsp;directory,&nbsp;it&nbsp;may&nbsp;be<br>
+overwritten&nbsp;depending&nbsp;on&nbsp;os.<a href="#Path-rename">rename</a>()&nbsp;semantics.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;destination&nbsp;is&nbsp;on&nbsp;our&nbsp;current&nbsp;filesystem,&nbsp;then&nbsp;<a href="#Path-rename">rename</a>()&nbsp;is&nbsp;used.<br>
+Otherwise,&nbsp;src&nbsp;is&nbsp;copied&nbsp;to&nbsp;the&nbsp;destination&nbsp;and&nbsp;then&nbsp;removed.&nbsp;Symlinks&nbsp;are<br>
+recreated&nbsp;under&nbsp;the&nbsp;new&nbsp;name&nbsp;if&nbsp;os.<a href="#Path-rename">rename</a>()&nbsp;fails&nbsp;because&nbsp;of&nbsp;cross<br>
+filesystem&nbsp;renames.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;`copy_function`&nbsp;argument&nbsp;is&nbsp;a&nbsp;callable&nbsp;that&nbsp;will&nbsp;be&nbsp;used<br>
+to&nbsp;copy&nbsp;the&nbsp;source&nbsp;or&nbsp;it&nbsp;will&nbsp;be&nbsp;delegated&nbsp;to&nbsp;`copytree`.<br>
+By&nbsp;default,&nbsp;<a href="#Path-copy2">copy2</a>()&nbsp;is&nbsp;used,&nbsp;but&nbsp;any&nbsp;function&nbsp;that&nbsp;supports&nbsp;the&nbsp;same<br>
+signature&nbsp;(like&nbsp;<a href="#Path-copy">copy</a>())&nbsp;can&nbsp;be&nbsp;used.<br>
+&nbsp;<br>
+A&nbsp;lot&nbsp;more&nbsp;could&nbsp;be&nbsp;done&nbsp;here...&nbsp;&nbsp;A&nbsp;look&nbsp;at&nbsp;a&nbsp;mv.c&nbsp;shows&nbsp;a&nbsp;lot&nbsp;of<br>
+the&nbsp;issues&nbsp;this&nbsp;implementation&nbsp;glosses&nbsp;over.</tt></dd></dl>
+
+<dl><dt><a name="Path-normcase"><strong>normcase</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.normcase`</tt></dd></dl>
+
+<dl><dt><a name="Path-normpath"><strong>normpath</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.normpath`</tt></dd></dl>
+
+<dl><dt><a name="Path-open"><strong>open</strong></a>(self, *args, **kwargs)</dt><dd><tt>Open&nbsp;this&nbsp;file&nbsp;and&nbsp;return&nbsp;a&nbsp;corresponding&nbsp;:class:`file`&nbsp;object.<br>
+&nbsp;<br>
+Keyword&nbsp;arguments&nbsp;work&nbsp;as&nbsp;in&nbsp;:func:`io.open`.&nbsp;&nbsp;If&nbsp;the&nbsp;file&nbsp;cannot&nbsp;be<br>
+opened,&nbsp;an&nbsp;:class:`~exceptions.OSError`&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="Path-pathconf"><strong>pathconf</strong></a>(self, name)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.pathconf`</tt></dd></dl>
+
+<dl><dt><a name="Path-read_hash"><strong>read_hash</strong></a>(self, hash_name)</dt><dd><tt>Calculate&nbsp;given&nbsp;hash&nbsp;for&nbsp;this&nbsp;file.<br>
+&nbsp;<br>
+List&nbsp;of&nbsp;supported&nbsp;hashes&nbsp;can&nbsp;be&nbsp;obtained&nbsp;from&nbsp;:mod:`hashlib`&nbsp;package.<br>
+This&nbsp;reads&nbsp;the&nbsp;entire&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`hashlib.hash.digest`</tt></dd></dl>
+
+<dl><dt><a name="Path-read_hexhash"><strong>read_hexhash</strong></a>(self, hash_name)</dt><dd><tt>Calculate&nbsp;given&nbsp;hash&nbsp;for&nbsp;this&nbsp;file,&nbsp;returning&nbsp;hexdigest.<br>
+&nbsp;<br>
+List&nbsp;of&nbsp;supported&nbsp;hashes&nbsp;can&nbsp;be&nbsp;obtained&nbsp;from&nbsp;:mod:`hashlib`&nbsp;package.<br>
+This&nbsp;reads&nbsp;the&nbsp;entire&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`hashlib.hash.hexdigest`</tt></dd></dl>
+
+<dl><dt><a name="Path-read_md5"><strong>read_md5</strong></a>(self)</dt><dd><tt>Calculate&nbsp;the&nbsp;md5&nbsp;hash&nbsp;for&nbsp;this&nbsp;file.<br>
+&nbsp;<br>
+This&nbsp;reads&nbsp;through&nbsp;the&nbsp;entire&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`read_hash`</tt></dd></dl>
+
+<dl><dt><a name="Path-readlink"><strong>readlink</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;path&nbsp;to&nbsp;which&nbsp;this&nbsp;symbolic&nbsp;link&nbsp;points.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;may&nbsp;be&nbsp;an&nbsp;absolute&nbsp;or&nbsp;a&nbsp;relative&nbsp;path.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`readlinkabs`,&nbsp;:func:`os.readlink`</tt></dd></dl>
+
+<dl><dt><a name="Path-readlinkabs"><strong>readlinkabs</strong></a>(self)</dt><dd><tt>Return&nbsp;the&nbsp;path&nbsp;to&nbsp;which&nbsp;this&nbsp;symbolic&nbsp;link&nbsp;points.<br>
+&nbsp;<br>
+The&nbsp;result&nbsp;is&nbsp;always&nbsp;an&nbsp;absolute&nbsp;path.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`readlink`,&nbsp;:func:`os.readlink`</tt></dd></dl>
+
+<dl><dt><a name="Path-realpath"><strong>realpath</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.realpath`</tt></dd></dl>
+
+<dl><dt><a name="Path-relpath"><strong>relpath</strong></a>(self, start='.')</dt><dd><tt>Return&nbsp;this&nbsp;path&nbsp;as&nbsp;a&nbsp;relative&nbsp;path,<br>
+based&nbsp;from&nbsp;`start`,&nbsp;which&nbsp;defaults&nbsp;to&nbsp;the&nbsp;current&nbsp;working&nbsp;directory.</tt></dd></dl>
+
+<dl><dt><a name="Path-relpathto"><strong>relpathto</strong></a>(self, dest)</dt><dd><tt>Return&nbsp;a&nbsp;relative&nbsp;path&nbsp;from&nbsp;`self`&nbsp;to&nbsp;`dest`.<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;no&nbsp;relative&nbsp;path&nbsp;from&nbsp;`self`&nbsp;to&nbsp;`dest`,&nbsp;for&nbsp;example&nbsp;if<br>
+they&nbsp;reside&nbsp;on&nbsp;different&nbsp;drives&nbsp;in&nbsp;Windows,&nbsp;then&nbsp;this&nbsp;returns<br>
+``dest.<a href="#Path-abspath">abspath</a>()``.</tt></dd></dl>
+
+<dl><dt><a name="Path-remove"><strong>remove</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.remove`</tt></dd></dl>
+
+<dl><dt><a name="Path-remove_p"><strong>remove_p</strong></a>(self)</dt><dd><tt>Like&nbsp;:meth:`remove`,&nbsp;but&nbsp;does&nbsp;not&nbsp;raise&nbsp;an&nbsp;exception&nbsp;if&nbsp;the<br>
+file&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="Path-removedirs"><strong>removedirs</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.removedirs`</tt></dd></dl>
+
+<dl><dt><a name="Path-removedirs_p"><strong>removedirs_p</strong></a>(self)</dt><dd><tt>Like&nbsp;:meth:`removedirs`,&nbsp;but&nbsp;does&nbsp;not&nbsp;raise&nbsp;an&nbsp;exception&nbsp;if&nbsp;the<br>
+directory&nbsp;is&nbsp;not&nbsp;empty&nbsp;or&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="Path-rename"><strong>rename</strong></a>(self, new)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.rename`</tt></dd></dl>
+
+<dl><dt><a name="Path-renames"><strong>renames</strong></a>(self, new)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.renames`</tt></dd></dl>
+
+<dl><dt><a name="Path-rmdir"><strong>rmdir</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.rmdir`</tt></dd></dl>
+
+<dl><dt><a name="Path-rmdir_p"><strong>rmdir_p</strong></a>(self)</dt><dd><tt>Like&nbsp;:meth:`rmdir`,&nbsp;but&nbsp;does&nbsp;not&nbsp;raise&nbsp;an&nbsp;exception&nbsp;if&nbsp;the<br>
+directory&nbsp;is&nbsp;not&nbsp;empty&nbsp;or&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="Path-rmtree"><strong>rmtree</strong></a>(path, ignore_errors=False, onerror=None)</dt><dd><tt>Recursively&nbsp;delete&nbsp;a&nbsp;directory&nbsp;tree.<br>
+&nbsp;<br>
+If&nbsp;ignore_errors&nbsp;is&nbsp;set,&nbsp;errors&nbsp;are&nbsp;ignored;&nbsp;otherwise,&nbsp;if&nbsp;onerror<br>
+is&nbsp;set,&nbsp;it&nbsp;is&nbsp;called&nbsp;to&nbsp;handle&nbsp;the&nbsp;error&nbsp;with&nbsp;arguments&nbsp;(func,<br>
+path,&nbsp;exc_info)&nbsp;where&nbsp;func&nbsp;is&nbsp;platform&nbsp;and&nbsp;implementation&nbsp;dependent;<br>
+path&nbsp;is&nbsp;the&nbsp;argument&nbsp;to&nbsp;that&nbsp;function&nbsp;that&nbsp;caused&nbsp;it&nbsp;to&nbsp;fail;&nbsp;and<br>
+exc_info&nbsp;is&nbsp;a&nbsp;tuple&nbsp;returned&nbsp;by&nbsp;sys.exc_info().&nbsp;&nbsp;If&nbsp;ignore_errors<br>
+is&nbsp;false&nbsp;and&nbsp;onerror&nbsp;is&nbsp;None,&nbsp;an&nbsp;exception&nbsp;is&nbsp;raised.</tt></dd></dl>
+
+<dl><dt><a name="Path-rmtree_p"><strong>rmtree_p</strong></a>(self)</dt><dd><tt>Like&nbsp;:meth:`rmtree`,&nbsp;but&nbsp;does&nbsp;not&nbsp;raise&nbsp;an&nbsp;exception&nbsp;if&nbsp;the<br>
+directory&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="Path-samefile"><strong>samefile</strong></a>(self, other)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.samefile`</tt></dd></dl>
+
+<dl><dt><a name="Path-splitall"><strong>splitall</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;path&nbsp;components&nbsp;in&nbsp;this&nbsp;path.<br>
+&nbsp;<br>
+The&nbsp;first&nbsp;item&nbsp;in&nbsp;the&nbsp;list&nbsp;will&nbsp;be&nbsp;a&nbsp;<a href="#Path">Path</a>.&nbsp;&nbsp;Its&nbsp;value&nbsp;will&nbsp;be<br>
+either&nbsp;:data:`os.curdir`,&nbsp;:data:`os.pardir`,&nbsp;empty,&nbsp;or&nbsp;the&nbsp;root<br>
+directory&nbsp;of&nbsp;this&nbsp;path&nbsp;(for&nbsp;example,&nbsp;``'/'``&nbsp;or&nbsp;``'C:\\'``).&nbsp;&nbsp;The<br>
+other&nbsp;items&nbsp;in&nbsp;the&nbsp;list&nbsp;will&nbsp;be&nbsp;strings.<br>
+&nbsp;<br>
+``path.<a href="#Path">Path</a>.<a href="#Path-joinpath">joinpath</a>(*result)``&nbsp;will&nbsp;yield&nbsp;the&nbsp;original&nbsp;path.</tt></dd></dl>
+
+<dl><dt><a name="Path-splitdrive"><strong>splitdrive</strong></a>(self)</dt><dd><tt>p.<a href="#Path-splitdrive">splitdrive</a>()&nbsp;-&gt;&nbsp;Return&nbsp;``(p.drive,&nbsp;&lt;the&nbsp;rest&nbsp;of&nbsp;p&gt;)``.<br>
+&nbsp;<br>
+Split&nbsp;the&nbsp;drive&nbsp;specifier&nbsp;from&nbsp;this&nbsp;path.&nbsp;&nbsp;If&nbsp;there&nbsp;is<br>
+no&nbsp;drive&nbsp;specifier,&nbsp;:samp:`{p.drive}`&nbsp;is&nbsp;empty,&nbsp;so&nbsp;the&nbsp;return&nbsp;value<br>
+is&nbsp;simply&nbsp;``(<a href="#Path">Path</a>(''),&nbsp;p)``.&nbsp;&nbsp;This&nbsp;is&nbsp;always&nbsp;the&nbsp;case&nbsp;on&nbsp;Unix.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.path.splitdrive`</tt></dd></dl>
+
+<dl><dt><a name="Path-splitext"><strong>splitext</strong></a>(self)</dt><dd><tt>p.<a href="#Path-splitext">splitext</a>()&nbsp;-&gt;&nbsp;Return&nbsp;``(p.<a href="#Path-stripext">stripext</a>(),&nbsp;p.ext)``.<br>
+&nbsp;<br>
+Split&nbsp;the&nbsp;filename&nbsp;extension&nbsp;from&nbsp;this&nbsp;path&nbsp;and&nbsp;return<br>
+the&nbsp;two&nbsp;parts.&nbsp;&nbsp;Either&nbsp;part&nbsp;may&nbsp;be&nbsp;empty.<br>
+&nbsp;<br>
+The&nbsp;extension&nbsp;is&nbsp;everything&nbsp;from&nbsp;``'.'``&nbsp;to&nbsp;the&nbsp;end&nbsp;of&nbsp;the<br>
+last&nbsp;path&nbsp;segment.&nbsp;&nbsp;This&nbsp;has&nbsp;the&nbsp;property&nbsp;that&nbsp;if<br>
+``(a,&nbsp;b)&nbsp;==&nbsp;p.<a href="#Path-splitext">splitext</a>()``,&nbsp;then&nbsp;``a&nbsp;+&nbsp;b&nbsp;==&nbsp;p``.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.path.splitext`</tt></dd></dl>
+
+<dl><dt><a name="Path-splitpath"><strong>splitpath</strong></a>(self)</dt><dd><tt>p.<a href="#Path-splitpath">splitpath</a>()&nbsp;-&gt;&nbsp;Return&nbsp;``(p.parent,&nbsp;p.name)``.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:attr:`parent`,&nbsp;:attr:`name`,&nbsp;:func:`os.path.split`</tt></dd></dl>
+
+<dl><dt><a name="Path-splitunc"><strong>splitunc</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.path.splitunc`</tt></dd></dl>
+
+<dl><dt><a name="Path-stat"><strong>stat</strong></a>(self)</dt><dd><tt>Perform&nbsp;a&nbsp;``<a href="#Path-stat">stat</a>()``&nbsp;system&nbsp;call&nbsp;on&nbsp;this&nbsp;path.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`lstat`,&nbsp;:func:`os.stat`</tt></dd></dl>
+
+<dl><dt><a name="Path-statvfs"><strong>statvfs</strong></a>(self)</dt><dd><tt>Perform&nbsp;a&nbsp;``<a href="#Path-statvfs">statvfs</a>()``&nbsp;system&nbsp;call&nbsp;on&nbsp;this&nbsp;path.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.statvfs`</tt></dd></dl>
+
+<dl><dt><a name="Path-stripext"><strong>stripext</strong></a>(self)</dt><dd><tt>p.<a href="#Path-stripext">stripext</a>()&nbsp;-&gt;&nbsp;Remove&nbsp;one&nbsp;file&nbsp;extension&nbsp;from&nbsp;the&nbsp;path.<br>
+&nbsp;<br>
+For&nbsp;example,&nbsp;``<a href="#Path">Path</a>('/home/guido/python.tar.gz').<a href="#Path-stripext">stripext</a>()``<br>
+returns&nbsp;``<a href="#Path">Path</a>('/home/guido/python.tar')``.</tt></dd></dl>
+
+<dl><dt><a name="Path-symlink"><strong>symlink</strong></a>(self, newlink=None)</dt><dd><tt>Create&nbsp;a&nbsp;symbolic&nbsp;link&nbsp;at&nbsp;`newlink`,&nbsp;pointing&nbsp;here.<br>
+&nbsp;<br>
+If&nbsp;newlink&nbsp;is&nbsp;not&nbsp;supplied,&nbsp;the&nbsp;symbolic&nbsp;link&nbsp;will&nbsp;assume<br>
+the&nbsp;name&nbsp;self.<a href="#Path-basename">basename</a>(),&nbsp;creating&nbsp;the&nbsp;link&nbsp;in&nbsp;the&nbsp;cwd.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.symlink`</tt></dd></dl>
+
+<dl><dt><a name="Path-text"><strong>text</strong></a>(self, encoding=None, errors='strict')</dt><dd><tt>Open&nbsp;this&nbsp;file,&nbsp;read&nbsp;it&nbsp;in,&nbsp;return&nbsp;the&nbsp;content&nbsp;as&nbsp;a&nbsp;string.<br>
+&nbsp;<br>
+All&nbsp;newline&nbsp;sequences&nbsp;are&nbsp;converted&nbsp;to&nbsp;``'\n'``.&nbsp;&nbsp;Keyword&nbsp;arguments<br>
+will&nbsp;be&nbsp;passed&nbsp;to&nbsp;:meth:`open`.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`lines`</tt></dd></dl>
+
+<dl><dt><a name="Path-touch"><strong>touch</strong></a>(self)</dt><dd><tt>Set&nbsp;the&nbsp;access/modified&nbsp;times&nbsp;of&nbsp;this&nbsp;file&nbsp;to&nbsp;the&nbsp;current&nbsp;time.<br>
+Create&nbsp;the&nbsp;file&nbsp;if&nbsp;it&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="Path-unlink"><strong>unlink</strong></a>(self)</dt><dd><tt>..&nbsp;seealso::&nbsp;:func:`os.unlink`</tt></dd></dl>
+
+<dl><dt><a name="Path-unlink_p"><strong>unlink_p</strong></a>(self)</dt><dd><tt>Like&nbsp;:meth:`unlink`,&nbsp;but&nbsp;does&nbsp;not&nbsp;raise&nbsp;an&nbsp;exception&nbsp;if&nbsp;the<br>
+file&nbsp;does&nbsp;not&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="Path-utime"><strong>utime</strong></a>(self, times)</dt><dd><tt>Set&nbsp;the&nbsp;access&nbsp;and&nbsp;modified&nbsp;times&nbsp;of&nbsp;this&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.utime`</tt></dd></dl>
+
+<dl><dt><a name="Path-walk"><strong>walk</strong></a>(self, pattern=None, errors='strict')</dt><dd><tt>D.<a href="#Path-walk">walk</a>()&nbsp;-&gt;&nbsp;iterator&nbsp;over&nbsp;files&nbsp;and&nbsp;subdirs,&nbsp;recursively.<br>
+&nbsp;<br>
+The&nbsp;iterator&nbsp;yields&nbsp;<a href="#Path">Path</a>&nbsp;objects&nbsp;naming&nbsp;each&nbsp;child&nbsp;item&nbsp;of<br>
+this&nbsp;directory&nbsp;and&nbsp;its&nbsp;descendants.&nbsp;&nbsp;This&nbsp;requires&nbsp;that<br>
+``D.<a href="#Path-isdir">isdir</a>()``.<br>
+&nbsp;<br>
+This&nbsp;performs&nbsp;a&nbsp;depth-first&nbsp;traversal&nbsp;of&nbsp;the&nbsp;directory&nbsp;tree.<br>
+Each&nbsp;directory&nbsp;is&nbsp;returned&nbsp;just&nbsp;before&nbsp;all&nbsp;its&nbsp;children.<br>
+&nbsp;<br>
+The&nbsp;`errors=`&nbsp;keyword&nbsp;argument&nbsp;controls&nbsp;behavior&nbsp;when&nbsp;an<br>
+error&nbsp;occurs.&nbsp;&nbsp;The&nbsp;default&nbsp;is&nbsp;``'strict'``,&nbsp;which&nbsp;causes&nbsp;an<br>
+exception.&nbsp;&nbsp;Other&nbsp;allowed&nbsp;values&nbsp;are&nbsp;``'warn'``&nbsp;(which<br>
+reports&nbsp;the&nbsp;error&nbsp;via&nbsp;:func:`warnings.warn()`),&nbsp;and&nbsp;``'ignore'``.<br>
+`errors`&nbsp;may&nbsp;also&nbsp;be&nbsp;an&nbsp;arbitrary&nbsp;callable&nbsp;taking&nbsp;a&nbsp;msg&nbsp;parameter.</tt></dd></dl>
+
+<dl><dt><a name="Path-walkdirs"><strong>walkdirs</strong></a>(self, pattern=None, errors='strict')</dt><dd><tt>D.<a href="#Path-walkdirs">walkdirs</a>()&nbsp;-&gt;&nbsp;iterator&nbsp;over&nbsp;subdirs,&nbsp;recursively.<br>
+&nbsp;<br>
+With&nbsp;the&nbsp;optional&nbsp;`pattern`&nbsp;argument,&nbsp;this&nbsp;yields&nbsp;only<br>
+directories&nbsp;whose&nbsp;names&nbsp;match&nbsp;the&nbsp;given&nbsp;pattern.&nbsp;&nbsp;For<br>
+example,&nbsp;``mydir.<a href="#Path-walkdirs">walkdirs</a>('*test')``&nbsp;yields&nbsp;only&nbsp;directories<br>
+with&nbsp;names&nbsp;ending&nbsp;in&nbsp;``'test'``.<br>
+&nbsp;<br>
+The&nbsp;`errors=`&nbsp;keyword&nbsp;argument&nbsp;controls&nbsp;behavior&nbsp;when&nbsp;an<br>
+error&nbsp;occurs.&nbsp;&nbsp;The&nbsp;default&nbsp;is&nbsp;``'strict'``,&nbsp;which&nbsp;causes&nbsp;an<br>
+exception.&nbsp;&nbsp;The&nbsp;other&nbsp;allowed&nbsp;values&nbsp;are&nbsp;``'warn'``&nbsp;(which<br>
+reports&nbsp;the&nbsp;error&nbsp;via&nbsp;:func:`warnings.warn()`),&nbsp;and&nbsp;``'ignore'``.</tt></dd></dl>
+
+<dl><dt><a name="Path-walkfiles"><strong>walkfiles</strong></a>(self, pattern=None, errors='strict')</dt><dd><tt>D.<a href="#Path-walkfiles">walkfiles</a>()&nbsp;-&gt;&nbsp;iterator&nbsp;over&nbsp;files&nbsp;in&nbsp;D,&nbsp;recursively.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;argument&nbsp;`pattern`&nbsp;limits&nbsp;the&nbsp;results&nbsp;to&nbsp;files<br>
+with&nbsp;names&nbsp;that&nbsp;match&nbsp;the&nbsp;pattern.&nbsp;&nbsp;For&nbsp;example,<br>
+``mydir.<a href="#Path-walkfiles">walkfiles</a>('*.tmp')``&nbsp;yields&nbsp;only&nbsp;files&nbsp;with&nbsp;the&nbsp;``.tmp``<br>
+extension.</tt></dd></dl>
+
+<dl><dt><a name="Path-with_suffix"><strong>with_suffix</strong></a>(self, suffix)</dt><dd><tt>Return&nbsp;a&nbsp;new&nbsp;path&nbsp;with&nbsp;the&nbsp;file&nbsp;suffix&nbsp;changed&nbsp;(or&nbsp;added,&nbsp;if&nbsp;none)<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;<a href="#Path">Path</a>('/home/guido/python.tar.gz').<a href="#Path-with_suffix">with_suffix</a>(".foo")<br>
+<a href="#Path">Path</a>('/home/guido/python.tar.foo')<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;<a href="#Path">Path</a>('python').<a href="#Path-with_suffix">with_suffix</a>('.zip')<br>
+<a href="#Path">Path</a>('python.zip')<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;<a href="#Path">Path</a>('filename.ext').<a href="#Path-with_suffix">with_suffix</a>('zip')<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+...<br>
+ValueError:&nbsp;Invalid&nbsp;suffix&nbsp;'zip'</tt></dd></dl>
+
+<dl><dt><a name="Path-write_bytes"><strong>write_bytes</strong></a>(self, bytes, append=False)</dt><dd><tt>Open&nbsp;this&nbsp;file&nbsp;and&nbsp;write&nbsp;the&nbsp;given&nbsp;bytes&nbsp;to&nbsp;it.<br>
+&nbsp;<br>
+Default&nbsp;behavior&nbsp;is&nbsp;to&nbsp;overwrite&nbsp;any&nbsp;existing&nbsp;file.<br>
+Call&nbsp;``p.<a href="#Path-write_bytes">write_bytes</a>(bytes,&nbsp;append=True)``&nbsp;to&nbsp;append&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="Path-write_lines"><strong>write_lines</strong></a>(self, lines, encoding=None, errors='strict', linesep='\n', append=False)</dt><dd><tt>Write&nbsp;the&nbsp;given&nbsp;lines&nbsp;of&nbsp;text&nbsp;to&nbsp;this&nbsp;file.<br>
+&nbsp;<br>
+By&nbsp;default&nbsp;this&nbsp;overwrites&nbsp;any&nbsp;existing&nbsp;file&nbsp;at&nbsp;this&nbsp;path.<br>
+&nbsp;<br>
+This&nbsp;puts&nbsp;a&nbsp;platform-specific&nbsp;newline&nbsp;sequence&nbsp;on&nbsp;every&nbsp;line.<br>
+See&nbsp;`linesep`&nbsp;below.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`lines`&nbsp;-&nbsp;A&nbsp;list&nbsp;of&nbsp;strings.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`encoding`&nbsp;-&nbsp;A&nbsp;Unicode&nbsp;encoding&nbsp;to&nbsp;use.&nbsp;&nbsp;This&nbsp;applies&nbsp;only&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`lines`&nbsp;contains&nbsp;any&nbsp;Unicode&nbsp;strings.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`errors`&nbsp;-&nbsp;How&nbsp;to&nbsp;handle&nbsp;errors&nbsp;in&nbsp;Unicode&nbsp;encoding.&nbsp;&nbsp;This<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;also&nbsp;applies&nbsp;only&nbsp;to&nbsp;Unicode&nbsp;strings.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;linesep&nbsp;-&nbsp;The&nbsp;desired&nbsp;line-ending.&nbsp;&nbsp;This&nbsp;line-ending&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;applied&nbsp;to&nbsp;every&nbsp;line.&nbsp;&nbsp;If&nbsp;a&nbsp;line&nbsp;already&nbsp;has&nbsp;any<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;standard&nbsp;line&nbsp;ending&nbsp;(``'\r'``,&nbsp;``'\n'``,&nbsp;``'\r\n'``,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;``u'\x85'``,&nbsp;``u'\r\x85'``,&nbsp;``u'\u2028'``),&nbsp;that&nbsp;will<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;stripped&nbsp;off&nbsp;and&nbsp;this&nbsp;will&nbsp;be&nbsp;used&nbsp;instead.&nbsp;&nbsp;The<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;is&nbsp;os.linesep,&nbsp;which&nbsp;is&nbsp;platform-dependent<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(``'\r\n'``&nbsp;on&nbsp;Windows,&nbsp;``'\n'``&nbsp;on&nbsp;Unix,&nbsp;etc.).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specify&nbsp;``None``&nbsp;to&nbsp;write&nbsp;the&nbsp;lines&nbsp;as-is,&nbsp;like<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:meth:`file.writelines`.<br>
+&nbsp;<br>
+Use&nbsp;the&nbsp;keyword&nbsp;argument&nbsp;``append=True``&nbsp;to&nbsp;append&nbsp;lines&nbsp;to&nbsp;the<br>
+file.&nbsp;&nbsp;The&nbsp;default&nbsp;is&nbsp;to&nbsp;overwrite&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;warning&nbsp;::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;When&nbsp;you&nbsp;use&nbsp;this&nbsp;with&nbsp;Unicode&nbsp;data,&nbsp;if&nbsp;the&nbsp;encoding&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;existing&nbsp;data&nbsp;in&nbsp;the&nbsp;file&nbsp;is&nbsp;different&nbsp;from&nbsp;the&nbsp;encoding<br>
+&nbsp;&nbsp;&nbsp;&nbsp;you&nbsp;specify&nbsp;with&nbsp;the&nbsp;`encoding=`&nbsp;parameter,&nbsp;the&nbsp;result&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mixed-encoding&nbsp;data,&nbsp;which&nbsp;can&nbsp;really&nbsp;confuse&nbsp;someone&nbsp;trying<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;read&nbsp;the&nbsp;file&nbsp;later.</tt></dd></dl>
+
+<dl><dt><a name="Path-write_text"><strong>write_text</strong></a>(self, text, encoding=None, errors='strict', linesep='\n', append=False)</dt><dd><tt>Write&nbsp;the&nbsp;given&nbsp;text&nbsp;to&nbsp;this&nbsp;file.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;behavior&nbsp;is&nbsp;to&nbsp;overwrite&nbsp;any&nbsp;existing&nbsp;file;<br>
+to&nbsp;append&nbsp;instead,&nbsp;use&nbsp;the&nbsp;`append=True`&nbsp;keyword&nbsp;argument.<br>
+&nbsp;<br>
+There&nbsp;are&nbsp;two&nbsp;differences&nbsp;between&nbsp;:meth:`write_text`&nbsp;and<br>
+:meth:`write_bytes`:&nbsp;newline&nbsp;handling&nbsp;and&nbsp;Unicode&nbsp;handling.<br>
+See&nbsp;below.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;<br>
+&nbsp;&nbsp;`text`&nbsp;-&nbsp;<a href="builtins.html#str">str</a>/unicode&nbsp;-&nbsp;The&nbsp;text&nbsp;to&nbsp;be&nbsp;written.<br>
+&nbsp;<br>
+&nbsp;&nbsp;`encoding`&nbsp;-&nbsp;<a href="builtins.html#str">str</a>&nbsp;-&nbsp;The&nbsp;Unicode&nbsp;encoding&nbsp;that&nbsp;will&nbsp;be&nbsp;used.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;is&nbsp;ignored&nbsp;if&nbsp;`text`&nbsp;isn't&nbsp;a&nbsp;Unicode&nbsp;string.<br>
+&nbsp;<br>
+&nbsp;&nbsp;`errors`&nbsp;-&nbsp;<a href="builtins.html#str">str</a>&nbsp;-&nbsp;How&nbsp;to&nbsp;handle&nbsp;Unicode&nbsp;encoding&nbsp;errors.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default&nbsp;is&nbsp;``'strict'``.&nbsp;&nbsp;See&nbsp;``help(unicode.encode)``&nbsp;for&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options.&nbsp;&nbsp;This&nbsp;is&nbsp;ignored&nbsp;if&nbsp;`text`&nbsp;isn't&nbsp;a&nbsp;Unicode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string.<br>
+&nbsp;<br>
+&nbsp;&nbsp;`linesep`&nbsp;-&nbsp;keyword&nbsp;argument&nbsp;-&nbsp;<a href="builtins.html#str">str</a>/unicode&nbsp;-&nbsp;The&nbsp;sequence&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characters&nbsp;to&nbsp;be&nbsp;used&nbsp;to&nbsp;mark&nbsp;end-of-line.&nbsp;&nbsp;The&nbsp;default&nbsp;is<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:data:`os.linesep`.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;specify&nbsp;``None``&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leave&nbsp;all&nbsp;newlines&nbsp;as&nbsp;they&nbsp;are&nbsp;in&nbsp;`text`.<br>
+&nbsp;<br>
+&nbsp;&nbsp;`append`&nbsp;-&nbsp;keyword&nbsp;argument&nbsp;-&nbsp;bool&nbsp;-&nbsp;Specifies&nbsp;what&nbsp;to&nbsp;do&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;file&nbsp;already&nbsp;exists&nbsp;(``True``:&nbsp;append&nbsp;to&nbsp;the&nbsp;end&nbsp;of&nbsp;it;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;``False``:&nbsp;overwrite&nbsp;it.)&nbsp;&nbsp;The&nbsp;default&nbsp;is&nbsp;``False``.<br>
+&nbsp;<br>
+&nbsp;<br>
+---&nbsp;Newline&nbsp;handling.<br>
+&nbsp;<br>
+``<a href="#Path-write_text">write_text</a>()``&nbsp;converts&nbsp;all&nbsp;standard&nbsp;end-of-line&nbsp;sequences<br>
+(``'\n'``,&nbsp;``'\r'``,&nbsp;and&nbsp;``'\r\n'``)&nbsp;to&nbsp;your&nbsp;platform's&nbsp;default<br>
+end-of-line&nbsp;sequence&nbsp;(see&nbsp;:data:`os.linesep`;&nbsp;on&nbsp;Windows,&nbsp;for&nbsp;example,<br>
+the&nbsp;end-of-line&nbsp;marker&nbsp;is&nbsp;``'\r\n'``).<br>
+&nbsp;<br>
+If&nbsp;you&nbsp;don't&nbsp;like&nbsp;your&nbsp;platform's&nbsp;default,&nbsp;you&nbsp;can&nbsp;override&nbsp;it<br>
+using&nbsp;the&nbsp;`linesep=`&nbsp;keyword&nbsp;argument.&nbsp;&nbsp;If&nbsp;you&nbsp;specifically&nbsp;want<br>
+``<a href="#Path-write_text">write_text</a>()``&nbsp;to&nbsp;preserve&nbsp;the&nbsp;newlines&nbsp;as-is,&nbsp;use&nbsp;``linesep=None``.<br>
+&nbsp;<br>
+This&nbsp;applies&nbsp;to&nbsp;Unicode&nbsp;text&nbsp;the&nbsp;same&nbsp;as&nbsp;to&nbsp;8-bit&nbsp;text,&nbsp;except<br>
+there&nbsp;are&nbsp;three&nbsp;additional&nbsp;standard&nbsp;Unicode&nbsp;end-of-line&nbsp;sequences:<br>
+``u'\x85'``,&nbsp;``u'\r\x85'``,&nbsp;and&nbsp;``u'\u2028'``.<br>
+&nbsp;<br>
+(This&nbsp;is&nbsp;slightly&nbsp;different&nbsp;from&nbsp;when&nbsp;you&nbsp;open&nbsp;a&nbsp;file&nbsp;for<br>
+writing&nbsp;with&nbsp;``fopen(filename,&nbsp;"w")``&nbsp;in&nbsp;C&nbsp;or&nbsp;``<a href="#Path-open">open</a>(filename,&nbsp;'w')``<br>
+in&nbsp;Python.)<br>
+&nbsp;<br>
+&nbsp;<br>
+---&nbsp;Unicode<br>
+&nbsp;<br>
+If&nbsp;`text`&nbsp;isn't&nbsp;Unicode,&nbsp;then&nbsp;apart&nbsp;from&nbsp;newline&nbsp;handling,&nbsp;the<br>
+bytes&nbsp;are&nbsp;written&nbsp;verbatim&nbsp;to&nbsp;the&nbsp;file.&nbsp;&nbsp;The&nbsp;`encoding`&nbsp;and<br>
+`errors`&nbsp;arguments&nbsp;are&nbsp;not&nbsp;used&nbsp;and&nbsp;must&nbsp;be&nbsp;omitted.<br>
+&nbsp;<br>
+If&nbsp;`text`&nbsp;is&nbsp;Unicode,&nbsp;it&nbsp;is&nbsp;first&nbsp;converted&nbsp;to&nbsp;:func:`bytes`&nbsp;using&nbsp;the<br>
+specified&nbsp;`encoding`&nbsp;(or&nbsp;the&nbsp;default&nbsp;encoding&nbsp;if&nbsp;`encoding`<br>
+isn't&nbsp;specified).&nbsp;&nbsp;The&nbsp;`errors`&nbsp;argument&nbsp;applies&nbsp;only&nbsp;to&nbsp;this<br>
+conversion.</tt></dd></dl>
+
+<hr>
+Class methods defined here:<br>
+<dl><dt><a name="Path-getcwd"><strong>getcwd</strong></a>()<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Return&nbsp;the&nbsp;current&nbsp;working&nbsp;directory&nbsp;as&nbsp;a&nbsp;path&nbsp;object.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:func:`os.getcwdu`</tt></dd></dl>
+
+<dl><dt><a name="Path-using_module"><strong>using_module</strong></a> = wrapper(module)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>atime</strong></dt>
+<dd><tt>Last&nbsp;access&nbsp;time&nbsp;of&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`getatime`,&nbsp;:func:`os.path.getatime`</tt></dd>
+</dl>
+<dl><dt><strong>ctime</strong></dt>
+<dd><tt>Creation&nbsp;time&nbsp;of&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`getctime`,&nbsp;:func:`os.path.getctime`</tt></dd>
+</dl>
+<dl><dt><strong>drive</strong></dt>
+<dd><tt>The&nbsp;drive&nbsp;specifier,&nbsp;for&nbsp;example&nbsp;``'C:'``.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;always&nbsp;empty&nbsp;on&nbsp;systems&nbsp;that&nbsp;don't&nbsp;use&nbsp;drive&nbsp;specifiers.</tt></dd>
+</dl>
+<dl><dt><strong>ext</strong></dt>
+<dd><tt>The&nbsp;file&nbsp;extension,&nbsp;for&nbsp;example&nbsp;``'.py'``.</tt></dd>
+</dl>
+<dl><dt><strong>mtime</strong></dt>
+<dd><tt>Last-modified&nbsp;time&nbsp;of&nbsp;the&nbsp;file.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`getmtime`,&nbsp;:func:`os.path.getmtime`</tt></dd>
+</dl>
+<dl><dt><strong>name</strong></dt>
+<dd><tt>The&nbsp;name&nbsp;of&nbsp;this&nbsp;file&nbsp;or&nbsp;directory&nbsp;without&nbsp;the&nbsp;full&nbsp;path.<br>
+&nbsp;<br>
+For&nbsp;example,<br>
+``Path('/usr/local/lib/libpython.so').name&nbsp;==&nbsp;'libpython.so'``<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`basename`,&nbsp;:func:`os.path.basename`</tt></dd>
+</dl>
+<dl><dt><strong>namebase</strong></dt>
+</dl>
+<dl><dt><strong>owner</strong></dt>
+<dd><tt>Name&nbsp;of&nbsp;the&nbsp;owner&nbsp;of&nbsp;this&nbsp;file&nbsp;or&nbsp;directory.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`get_owner`</tt></dd>
+</dl>
+<dl><dt><strong>parent</strong></dt>
+<dd><tt>This&nbsp;path's&nbsp;parent&nbsp;directory,&nbsp;as&nbsp;a&nbsp;new&nbsp;Path&nbsp;object.<br>
+&nbsp;<br>
+For&nbsp;example,<br>
+``Path('/usr/local/lib/libpython.so').parent&nbsp;==<br>
+Path('/usr/local/lib')``<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`dirname`,&nbsp;:func:`os.path.dirname`</tt></dd>
+</dl>
+<dl><dt><strong>size</strong></dt>
+<dd><tt>Size&nbsp;of&nbsp;the&nbsp;file,&nbsp;in&nbsp;bytes.<br>
+&nbsp;<br>
+..&nbsp;seealso::&nbsp;:meth:`getsize`,&nbsp;:func:`os.path.getsize`</tt></dd>
+</dl>
+<dl><dt><strong>special</strong></dt>
+<dd><tt>classmethod(function)&nbsp;-&gt;&nbsp;method<br>
+&nbsp;<br>
+Convert&nbsp;a&nbsp;function&nbsp;to&nbsp;be&nbsp;a&nbsp;class&nbsp;method.<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;method&nbsp;receives&nbsp;the&nbsp;class&nbsp;as&nbsp;implicit&nbsp;first&nbsp;argument,<br>
+just&nbsp;like&nbsp;an&nbsp;instance&nbsp;method&nbsp;receives&nbsp;the&nbsp;instance.<br>
+To&nbsp;declare&nbsp;a&nbsp;class&nbsp;method,&nbsp;use&nbsp;this&nbsp;idiom:<br>
+&nbsp;<br>
+&nbsp;&nbsp;class&nbsp;C:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@classmethod<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;f(cls,&nbsp;arg1,&nbsp;arg2,&nbsp;...):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+&nbsp;<br>
+It&nbsp;can&nbsp;be&nbsp;called&nbsp;either&nbsp;on&nbsp;the&nbsp;class&nbsp;(e.g.&nbsp;C.f())&nbsp;or&nbsp;on&nbsp;an&nbsp;instance<br>
+(e.g.&nbsp;C().f()).&nbsp;&nbsp;The&nbsp;instance&nbsp;is&nbsp;ignored&nbsp;except&nbsp;for&nbsp;its&nbsp;class.<br>
+If&nbsp;a&nbsp;class&nbsp;method&nbsp;is&nbsp;called&nbsp;for&nbsp;a&nbsp;derived&nbsp;class,&nbsp;the&nbsp;derived&nbsp;class<br>
+object&nbsp;is&nbsp;passed&nbsp;as&nbsp;the&nbsp;implied&nbsp;first&nbsp;argument.<br>
+&nbsp;<br>
+Class&nbsp;methods&nbsp;are&nbsp;different&nbsp;than&nbsp;C++&nbsp;or&nbsp;Java&nbsp;static&nbsp;methods.<br>
+If&nbsp;you&nbsp;want&nbsp;those,&nbsp;see&nbsp;the&nbsp;staticmethod&nbsp;builtin.</tt></dd>
+</dl>
+<dl><dt><strong>stem</strong></dt>
+<dd><tt>The&nbsp;same&nbsp;as&nbsp;:meth:`name`,&nbsp;but&nbsp;with&nbsp;one&nbsp;file&nbsp;extension&nbsp;stripped&nbsp;off.<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;Path('/home/guido/python.tar.gz').stem<br>
+'python.tar'</tt></dd>
+</dl>
+<dl><dt><strong>uncshare</strong></dt>
+<dd><tt>The&nbsp;UNC&nbsp;mount&nbsp;point&nbsp;for&nbsp;this&nbsp;path.<br>
+This&nbsp;is&nbsp;empty&nbsp;for&nbsp;paths&nbsp;on&nbsp;local&nbsp;drives.</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>joinpath</strong> = functools.partial(&lt;function Path.joinpath at 0x10d4716a8&gt;, &lt;class 'path.Path'&gt;)<dd><tt>partial(func,&nbsp;*args,&nbsp;**keywords)&nbsp;-&nbsp;new&nbsp;function&nbsp;with&nbsp;partial&nbsp;application<br>
+of&nbsp;the&nbsp;given&nbsp;arguments&nbsp;and&nbsp;keywords.</tt></dl>
+
+<dl><dt><strong>module</strong> = &lt;module 'posixpath' from '/anaconda3/lib/python3.6/posixpath.py'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#str">builtins.str</a>:<br>
+<dl><dt><a name="Path-__contains__"><strong>__contains__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;key&nbsp;in&nbsp;self.</tt></dd></dl>
+
+<dl><dt><a name="Path-__eq__"><strong>__eq__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__format__"><strong>__format__</strong></a>(...)</dt><dd><tt>S.<a href="#Path-__format__">__format__</a>(format_spec)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S&nbsp;as&nbsp;described&nbsp;by&nbsp;format_spec.</tt></dd></dl>
+
+<dl><dt><a name="Path-__ge__"><strong>__ge__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="Path-__getitem__"><strong>__getitem__</strong></a>(self, key, /)</dt><dd><tt>Return&nbsp;self[key].</tt></dd></dl>
+
+<dl><dt><a name="Path-__getnewargs__"><strong>__getnewargs__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="Path-__gt__"><strong>__gt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&gt;value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__hash__"><strong>__hash__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;hash(self).</tt></dd></dl>
+
+<dl><dt><a name="Path-__iter__"><strong>__iter__</strong></a>(self, /)</dt><dd><tt>Implement&nbsp;iter(self).</tt></dd></dl>
+
+<dl><dt><a name="Path-__le__"><strong>__le__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;=value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__len__"><strong>__len__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;len(self).</tt></dd></dl>
+
+<dl><dt><a name="Path-__lt__"><strong>__lt__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self&lt;value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__mod__"><strong>__mod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self%value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__mul__"><strong>__mul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.n</tt></dd></dl>
+
+<dl><dt><a name="Path-__ne__"><strong>__ne__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self!=value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Path-__rmod__"><strong>__rmod__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;value%self.</tt></dd></dl>
+
+<dl><dt><a name="Path-__rmul__"><strong>__rmul__</strong></a>(self, value, /)</dt><dd><tt>Return&nbsp;self*value.</tt></dd></dl>
+
+<dl><dt><a name="Path-__sizeof__"><strong>__sizeof__</strong></a>(...)</dt><dd><tt>S.<a href="#Path-__sizeof__">__sizeof__</a>()&nbsp;-&gt;&nbsp;size&nbsp;of&nbsp;S&nbsp;in&nbsp;memory,&nbsp;in&nbsp;bytes</tt></dd></dl>
+
+<dl><dt><a name="Path-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;<a href="builtins.html#str">str</a>(self).</tt></dd></dl>
+
+<dl><dt><a name="Path-capitalize"><strong>capitalize</strong></a>(...)</dt><dd><tt>S.<a href="#Path-capitalize">capitalize</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;capitalized&nbsp;version&nbsp;of&nbsp;S,&nbsp;i.e.&nbsp;make&nbsp;the&nbsp;first&nbsp;character<br>
+have&nbsp;upper&nbsp;case&nbsp;and&nbsp;the&nbsp;rest&nbsp;lower&nbsp;case.</tt></dd></dl>
+
+<dl><dt><a name="Path-casefold"><strong>casefold</strong></a>(...)</dt><dd><tt>S.<a href="#Path-casefold">casefold</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;version&nbsp;of&nbsp;S&nbsp;suitable&nbsp;for&nbsp;caseless&nbsp;comparisons.</tt></dd></dl>
+
+<dl><dt><a name="Path-center"><strong>center</strong></a>(...)</dt><dd><tt>S.<a href="#Path-center">center</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;centered&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space)</tt></dd></dl>
+
+<dl><dt><a name="Path-count"><strong>count</strong></a>(...)</dt><dd><tt>S.<a href="#Path-count">count</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;number&nbsp;of&nbsp;non-overlapping&nbsp;occurrences&nbsp;of&nbsp;substring&nbsp;sub&nbsp;in<br>
+string&nbsp;S[start:end].&nbsp;&nbsp;Optional&nbsp;arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are<br>
+interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.</tt></dd></dl>
+
+<dl><dt><a name="Path-encode"><strong>encode</strong></a>(...)</dt><dd><tt>S.<a href="#Path-encode">encode</a>(encoding='utf-8',&nbsp;errors='strict')&nbsp;-&gt;&nbsp;bytes<br>
+&nbsp;<br>
+Encode&nbsp;S&nbsp;using&nbsp;the&nbsp;codec&nbsp;registered&nbsp;for&nbsp;encoding.&nbsp;Default&nbsp;encoding<br>
+is&nbsp;'utf-8'.&nbsp;errors&nbsp;may&nbsp;be&nbsp;given&nbsp;to&nbsp;set&nbsp;a&nbsp;different&nbsp;error<br>
+handling&nbsp;scheme.&nbsp;Default&nbsp;is&nbsp;'strict'&nbsp;meaning&nbsp;that&nbsp;encoding&nbsp;errors&nbsp;raise<br>
+a&nbsp;UnicodeEncodeError.&nbsp;Other&nbsp;possible&nbsp;values&nbsp;are&nbsp;'ignore',&nbsp;'replace'&nbsp;and<br>
+'xmlcharrefreplace'&nbsp;as&nbsp;well&nbsp;as&nbsp;any&nbsp;other&nbsp;name&nbsp;registered&nbsp;with<br>
+codecs.register_error&nbsp;that&nbsp;can&nbsp;handle&nbsp;UnicodeEncodeErrors.</tt></dd></dl>
+
+<dl><dt><a name="Path-endswith"><strong>endswith</strong></a>(...)</dt><dd><tt>S.<a href="#Path-endswith">endswith</a>(suffix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;ends&nbsp;with&nbsp;the&nbsp;specified&nbsp;suffix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+suffix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="Path-expandtabs"><strong>expandtabs</strong></a>(...)</dt><dd><tt>S.<a href="#Path-expandtabs">expandtabs</a>(tabsize=8)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;where&nbsp;all&nbsp;tab&nbsp;characters&nbsp;are&nbsp;expanded&nbsp;using&nbsp;spaces.<br>
+If&nbsp;tabsize&nbsp;is&nbsp;not&nbsp;given,&nbsp;a&nbsp;tab&nbsp;size&nbsp;of&nbsp;8&nbsp;characters&nbsp;is&nbsp;assumed.</tt></dd></dl>
+
+<dl><dt><a name="Path-find"><strong>find</strong></a>(...)</dt><dd><tt>S.<a href="#Path-find">find</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;lowest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="Path-format"><strong>format</strong></a>(...)</dt><dd><tt>S.<a href="#Path-format">format</a>(*args,&nbsp;**kwargs)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S,&nbsp;using&nbsp;substitutions&nbsp;from&nbsp;args&nbsp;and&nbsp;kwargs.<br>
+The&nbsp;substitutions&nbsp;are&nbsp;identified&nbsp;by&nbsp;braces&nbsp;('{'&nbsp;and&nbsp;'}').</tt></dd></dl>
+
+<dl><dt><a name="Path-format_map"><strong>format_map</strong></a>(...)</dt><dd><tt>S.<a href="#Path-format_map">format_map</a>(mapping)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;formatted&nbsp;version&nbsp;of&nbsp;S,&nbsp;using&nbsp;substitutions&nbsp;from&nbsp;mapping.<br>
+The&nbsp;substitutions&nbsp;are&nbsp;identified&nbsp;by&nbsp;braces&nbsp;('{'&nbsp;and&nbsp;'}').</tt></dd></dl>
+
+<dl><dt><a name="Path-index"><strong>index</strong></a>(...)</dt><dd><tt>S.<a href="#Path-index">index</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;lowest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,&nbsp;<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Raises&nbsp;ValueError&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="Path-isalnum"><strong>isalnum</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isalnum">isalnum</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphanumeric<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isalpha"><strong>isalpha</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isalpha">isalpha</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;alphabetic<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isdecimal"><strong>isdecimal</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isdecimal">isdecimal</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;only&nbsp;decimal&nbsp;characters&nbsp;in&nbsp;S,<br>
+False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isdigit"><strong>isdigit</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isdigit">isdigit</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;digits<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isidentifier"><strong>isidentifier</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isidentifier">isidentifier</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;is&nbsp;a&nbsp;valid&nbsp;identifier&nbsp;according<br>
+to&nbsp;the&nbsp;language&nbsp;definition.<br>
+&nbsp;<br>
+Use&nbsp;keyword.iskeyword()&nbsp;to&nbsp;test&nbsp;for&nbsp;reserved&nbsp;identifiers<br>
+such&nbsp;as&nbsp;"def"&nbsp;and&nbsp;"class".</tt></dd></dl>
+
+<dl><dt><a name="Path-islower"><strong>islower</strong></a>(...)</dt><dd><tt>S.<a href="#Path-islower">islower</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;lowercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isnumeric"><strong>isnumeric</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isnumeric">isnumeric</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;only&nbsp;numeric&nbsp;characters&nbsp;in&nbsp;S,<br>
+False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isprintable"><strong>isprintable</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isprintable">isprintable</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;considered<br>
+printable&nbsp;in&nbsp;repr()&nbsp;or&nbsp;S&nbsp;is&nbsp;empty,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isspace"><strong>isspace</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isspace">isspace</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;whitespace<br>
+and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-istitle"><strong>istitle</strong></a>(...)</dt><dd><tt>S.<a href="#Path-istitle">istitle</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;is&nbsp;a&nbsp;titlecased&nbsp;string&nbsp;and&nbsp;there&nbsp;is&nbsp;at&nbsp;least&nbsp;one<br>
+character&nbsp;in&nbsp;S,&nbsp;i.e.&nbsp;upper-&nbsp;and&nbsp;titlecase&nbsp;characters&nbsp;may&nbsp;only<br>
+follow&nbsp;uncased&nbsp;characters&nbsp;and&nbsp;lowercase&nbsp;characters&nbsp;only&nbsp;cased&nbsp;ones.<br>
+Return&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-isupper"><strong>isupper</strong></a>(...)</dt><dd><tt>S.<a href="#Path-isupper">isupper</a>()&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;all&nbsp;cased&nbsp;characters&nbsp;in&nbsp;S&nbsp;are&nbsp;uppercase&nbsp;and&nbsp;there&nbsp;is<br>
+at&nbsp;least&nbsp;one&nbsp;cased&nbsp;character&nbsp;in&nbsp;S,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="Path-join"><strong>join</strong></a>(...)</dt><dd><tt>S.<a href="#Path-join">join</a>(iterable)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;string&nbsp;which&nbsp;is&nbsp;the&nbsp;concatenation&nbsp;of&nbsp;the&nbsp;strings&nbsp;in&nbsp;the<br>
+iterable.&nbsp;&nbsp;The&nbsp;separator&nbsp;between&nbsp;elements&nbsp;is&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="Path-ljust"><strong>ljust</strong></a>(...)</dt><dd><tt>S.<a href="#Path-ljust">ljust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;left-justified&nbsp;in&nbsp;a&nbsp;Unicode&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space).</tt></dd></dl>
+
+<dl><dt><a name="Path-lower"><strong>lower</strong></a>(...)</dt><dd><tt>S.<a href="#Path-lower">lower</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;converted&nbsp;to&nbsp;lowercase.</tt></dd></dl>
+
+<dl><dt><a name="Path-lstrip"><strong>lstrip</strong></a>(...)</dt><dd><tt>S.<a href="#Path-lstrip">lstrip</a>([chars])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="Path-partition"><strong>partition</strong></a>(...)</dt><dd><tt>S.<a href="#Path-partition">partition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;and&nbsp;return&nbsp;the&nbsp;part&nbsp;before&nbsp;it,<br>
+the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the&nbsp;separator&nbsp;is&nbsp;not<br>
+found,&nbsp;return&nbsp;S&nbsp;and&nbsp;two&nbsp;empty&nbsp;strings.</tt></dd></dl>
+
+<dl><dt><a name="Path-replace"><strong>replace</strong></a>(...)</dt><dd><tt>S.<a href="#Path-replace">replace</a>(old,&nbsp;new[,&nbsp;count])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;with&nbsp;all&nbsp;occurrences&nbsp;of&nbsp;substring<br>
+old&nbsp;replaced&nbsp;by&nbsp;new.&nbsp;&nbsp;If&nbsp;the&nbsp;optional&nbsp;argument&nbsp;count&nbsp;is<br>
+given,&nbsp;only&nbsp;the&nbsp;first&nbsp;count&nbsp;occurrences&nbsp;are&nbsp;replaced.</tt></dd></dl>
+
+<dl><dt><a name="Path-rfind"><strong>rfind</strong></a>(...)</dt><dd><tt>S.<a href="#Path-rfind">rfind</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;highest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Return&nbsp;-1&nbsp;on&nbsp;failure.</tt></dd></dl>
+
+<dl><dt><a name="Path-rindex"><strong>rindex</strong></a>(...)</dt><dd><tt>S.<a href="#Path-rindex">rindex</a>(sub[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;int<br>
+&nbsp;<br>
+Return&nbsp;the&nbsp;highest&nbsp;index&nbsp;in&nbsp;S&nbsp;where&nbsp;substring&nbsp;sub&nbsp;is&nbsp;found,<br>
+such&nbsp;that&nbsp;sub&nbsp;is&nbsp;contained&nbsp;within&nbsp;S[start:end].&nbsp;&nbsp;Optional<br>
+arguments&nbsp;start&nbsp;and&nbsp;end&nbsp;are&nbsp;interpreted&nbsp;as&nbsp;in&nbsp;slice&nbsp;notation.<br>
+&nbsp;<br>
+Raises&nbsp;ValueError&nbsp;when&nbsp;the&nbsp;substring&nbsp;is&nbsp;not&nbsp;found.</tt></dd></dl>
+
+<dl><dt><a name="Path-rjust"><strong>rjust</strong></a>(...)</dt><dd><tt>S.<a href="#Path-rjust">rjust</a>(width[,&nbsp;fillchar])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;S&nbsp;right-justified&nbsp;in&nbsp;a&nbsp;string&nbsp;of&nbsp;length&nbsp;width.&nbsp;Padding&nbsp;is<br>
+done&nbsp;using&nbsp;the&nbsp;specified&nbsp;fill&nbsp;character&nbsp;(default&nbsp;is&nbsp;a&nbsp;space).</tt></dd></dl>
+
+<dl><dt><a name="Path-rpartition"><strong>rpartition</strong></a>(...)</dt><dd><tt>S.<a href="#Path-rpartition">rpartition</a>(sep)&nbsp;-&gt;&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+&nbsp;<br>
+Search&nbsp;for&nbsp;the&nbsp;separator&nbsp;sep&nbsp;in&nbsp;S,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;S,&nbsp;and&nbsp;return<br>
+the&nbsp;part&nbsp;before&nbsp;it,&nbsp;the&nbsp;separator&nbsp;itself,&nbsp;and&nbsp;the&nbsp;part&nbsp;after&nbsp;it.&nbsp;&nbsp;If&nbsp;the<br>
+separator&nbsp;is&nbsp;not&nbsp;found,&nbsp;return&nbsp;two&nbsp;empty&nbsp;strings&nbsp;and&nbsp;S.</tt></dd></dl>
+
+<dl><dt><a name="Path-rsplit"><strong>rsplit</strong></a>(...)</dt><dd><tt>S.<a href="#Path-rsplit">rsplit</a>(sep=None,&nbsp;maxsplit=-1)&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string,&nbsp;starting&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;string&nbsp;and<br>
+working&nbsp;to&nbsp;the&nbsp;front.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit<br>
+splits&nbsp;are&nbsp;done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified,&nbsp;any&nbsp;whitespace&nbsp;string<br>
+is&nbsp;a&nbsp;separator.</tt></dd></dl>
+
+<dl><dt><a name="Path-rstrip"><strong>rstrip</strong></a>(...)</dt><dd><tt>S.<a href="#Path-rstrip">rstrip</a>([chars])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;trailing&nbsp;whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="Path-split"><strong>split</strong></a>(...)</dt><dd><tt>S.<a href="#Path-split">split</a>(sep=None,&nbsp;maxsplit=-1)&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;words&nbsp;in&nbsp;S,&nbsp;using&nbsp;sep&nbsp;as&nbsp;the<br>
+delimiter&nbsp;string.&nbsp;&nbsp;If&nbsp;maxsplit&nbsp;is&nbsp;given,&nbsp;at&nbsp;most&nbsp;maxsplit<br>
+splits&nbsp;are&nbsp;done.&nbsp;If&nbsp;sep&nbsp;is&nbsp;not&nbsp;specified&nbsp;or&nbsp;is&nbsp;None,&nbsp;any<br>
+whitespace&nbsp;string&nbsp;is&nbsp;a&nbsp;separator&nbsp;and&nbsp;empty&nbsp;strings&nbsp;are<br>
+removed&nbsp;from&nbsp;the&nbsp;result.</tt></dd></dl>
+
+<dl><dt><a name="Path-splitlines"><strong>splitlines</strong></a>(...)</dt><dd><tt>S.<a href="#Path-splitlines">splitlines</a>([keepends])&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;strings<br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;list&nbsp;of&nbsp;the&nbsp;lines&nbsp;in&nbsp;S,&nbsp;breaking&nbsp;at&nbsp;line&nbsp;boundaries.<br>
+Line&nbsp;breaks&nbsp;are&nbsp;not&nbsp;included&nbsp;in&nbsp;the&nbsp;resulting&nbsp;list&nbsp;unless&nbsp;keepends<br>
+is&nbsp;given&nbsp;and&nbsp;true.</tt></dd></dl>
+
+<dl><dt><a name="Path-startswith"><strong>startswith</strong></a>(...)</dt><dd><tt>S.<a href="#Path-startswith">startswith</a>(prefix[,&nbsp;start[,&nbsp;end]])&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;True&nbsp;if&nbsp;S&nbsp;starts&nbsp;with&nbsp;the&nbsp;specified&nbsp;prefix,&nbsp;False&nbsp;otherwise.<br>
+With&nbsp;optional&nbsp;start,&nbsp;test&nbsp;S&nbsp;beginning&nbsp;at&nbsp;that&nbsp;position.<br>
+With&nbsp;optional&nbsp;end,&nbsp;stop&nbsp;comparing&nbsp;S&nbsp;at&nbsp;that&nbsp;position.<br>
+prefix&nbsp;can&nbsp;also&nbsp;be&nbsp;a&nbsp;tuple&nbsp;of&nbsp;strings&nbsp;to&nbsp;try.</tt></dd></dl>
+
+<dl><dt><a name="Path-strip"><strong>strip</strong></a>(...)</dt><dd><tt>S.<a href="#Path-strip">strip</a>([chars])&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;with&nbsp;leading&nbsp;and&nbsp;trailing<br>
+whitespace&nbsp;removed.<br>
+If&nbsp;chars&nbsp;is&nbsp;given&nbsp;and&nbsp;not&nbsp;None,&nbsp;remove&nbsp;characters&nbsp;in&nbsp;chars&nbsp;instead.</tt></dd></dl>
+
+<dl><dt><a name="Path-swapcase"><strong>swapcase</strong></a>(...)</dt><dd><tt>S.<a href="#Path-swapcase">swapcase</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;with&nbsp;uppercase&nbsp;characters&nbsp;converted&nbsp;to&nbsp;lowercase<br>
+and&nbsp;vice&nbsp;versa.</tt></dd></dl>
+
+<dl><dt><a name="Path-title"><strong>title</strong></a>(...)</dt><dd><tt>S.<a href="#Path-title">title</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;titlecased&nbsp;version&nbsp;of&nbsp;S,&nbsp;i.e.&nbsp;words&nbsp;start&nbsp;with&nbsp;title&nbsp;case<br>
+characters,&nbsp;all&nbsp;remaining&nbsp;cased&nbsp;characters&nbsp;have&nbsp;lower&nbsp;case.</tt></dd></dl>
+
+<dl><dt><a name="Path-translate"><strong>translate</strong></a>(...)</dt><dd><tt>S.<a href="#Path-translate">translate</a>(table)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;string&nbsp;S&nbsp;in&nbsp;which&nbsp;each&nbsp;character&nbsp;has&nbsp;been&nbsp;mapped<br>
+through&nbsp;the&nbsp;given&nbsp;translation&nbsp;table.&nbsp;The&nbsp;table&nbsp;must&nbsp;implement<br>
+lookup/indexing&nbsp;via&nbsp;__getitem__,&nbsp;for&nbsp;instance&nbsp;a&nbsp;dictionary&nbsp;or&nbsp;list,<br>
+mapping&nbsp;Unicode&nbsp;ordinals&nbsp;to&nbsp;Unicode&nbsp;ordinals,&nbsp;strings,&nbsp;or&nbsp;None.&nbsp;If<br>
+this&nbsp;operation&nbsp;raises&nbsp;LookupError,&nbsp;the&nbsp;character&nbsp;is&nbsp;left&nbsp;untouched.<br>
+Characters&nbsp;mapped&nbsp;to&nbsp;None&nbsp;are&nbsp;deleted.</tt></dd></dl>
+
+<dl><dt><a name="Path-upper"><strong>upper</strong></a>(...)</dt><dd><tt>S.<a href="#Path-upper">upper</a>()&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Return&nbsp;a&nbsp;copy&nbsp;of&nbsp;S&nbsp;converted&nbsp;to&nbsp;uppercase.</tt></dd></dl>
+
+<dl><dt><a name="Path-zfill"><strong>zfill</strong></a>(...)</dt><dd><tt>S.<a href="#Path-zfill">zfill</a>(width)&nbsp;-&gt;&nbsp;<a href="builtins.html#str">str</a><br>
+&nbsp;<br>
+Pad&nbsp;a&nbsp;numeric&nbsp;string&nbsp;S&nbsp;with&nbsp;zeros&nbsp;on&nbsp;the&nbsp;left,&nbsp;to&nbsp;fill&nbsp;a&nbsp;field<br>
+of&nbsp;the&nbsp;specified&nbsp;width.&nbsp;The&nbsp;string&nbsp;S&nbsp;is&nbsp;never&nbsp;truncated.</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="builtins.html#str">builtins.str</a>:<br>
+<dl><dt><a name="Path-maketrans"><strong>maketrans</strong></a>(x, y=None, z=None, /)</dt><dd><tt>Return&nbsp;a&nbsp;translation&nbsp;table&nbsp;usable&nbsp;for&nbsp;<a href="builtins.html#str">str</a>.<a href="#Path-translate">translate</a>().<br>
+&nbsp;<br>
+If&nbsp;there&nbsp;is&nbsp;only&nbsp;one&nbsp;argument,&nbsp;it&nbsp;must&nbsp;be&nbsp;a&nbsp;dictionary&nbsp;mapping&nbsp;Unicode<br>
+ordinals&nbsp;(integers)&nbsp;or&nbsp;characters&nbsp;to&nbsp;Unicode&nbsp;ordinals,&nbsp;strings&nbsp;or&nbsp;None.<br>
+Character&nbsp;keys&nbsp;will&nbsp;be&nbsp;then&nbsp;converted&nbsp;to&nbsp;ordinals.<br>
+If&nbsp;there&nbsp;are&nbsp;two&nbsp;arguments,&nbsp;they&nbsp;must&nbsp;be&nbsp;strings&nbsp;of&nbsp;equal&nbsp;length,&nbsp;and<br>
+in&nbsp;the&nbsp;resulting&nbsp;dictionary,&nbsp;each&nbsp;character&nbsp;in&nbsp;x&nbsp;will&nbsp;be&nbsp;mapped&nbsp;to&nbsp;the<br>
+character&nbsp;at&nbsp;the&nbsp;same&nbsp;position&nbsp;in&nbsp;y.&nbsp;If&nbsp;there&nbsp;is&nbsp;a&nbsp;third&nbsp;argument,&nbsp;it<br>
+must&nbsp;be&nbsp;a&nbsp;string,&nbsp;whose&nbsp;characters&nbsp;will&nbsp;be&nbsp;mapped&nbsp;to&nbsp;None&nbsp;in&nbsp;the&nbsp;result.</tt></dd></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['Path', 'CaseInsensitivePattern']</td></tr></table>
+</body></html>

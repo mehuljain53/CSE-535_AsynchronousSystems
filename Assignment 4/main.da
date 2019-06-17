@@ -1,0 +1,432 @@
+import sys
+from random import randint
+import time
+from statisticsCalculater import StatisticsCalculator
+import warnings
+import random
+
+
+def fxn():
+    warnings.warn("deprecated", DeprecationWarning)
+
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
+    fxn()
+
+class Proposer(process):
+    def setup(acceptors,monitor,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,timeOutProposer,isPreempt,isTimeOut,backOffTime):
+        self.n = None              # proposal number
+        self.majority = acceptors  # majority of acceptors; all in other papers
+        self.preempt = False
+        
+
+    def customSendCommand(msg,receivers): #Broadcast Messaging based on probability (1- message loss rate)
+        time.sleep(messageDelay)
+        for receiver in receivers:
+            probability = random.random()
+            if probability > messageLossRate:
+                send(msg,to=receiver)
+            else:
+                pass
+
+
+
+    #preemt only if current Proposal Number is less than the number returned by Acceptor
+    def receive(msg= ('PreemtPropose',n2),from_ = p): 
+        if(n2[0]>=n[0]):
+            self.preempt = True
+            #print('Show output :********' + str(n2[0]) + '  ' + str(n[0]))
+            n = (n2[0],self)
+             #so that this proposer picks more value than n2 in next round
+
+
+    def to_consent():
+        self.preempt = False
+        n = (0, self) if n == None else (n[0]+1, self)  # pick a prop num
+        customSendCommand(('prepare', n), majority)
+
+
+        if await(len(setof(a, received(('respond', _n, _), from_ =a))) #Go inside this If statement only if await is satisfied and no preemtion
+                 > len(acceptors)/2 and (not self.preempt or not isPreempt))   :
+            v = anyof(setof(v, received(('respond', _n, (n2, v))),
+                            n2==max(setof(n2, received(('respond', _n, (n2, _))))))
+                      or {randint(1,100)})  # any value, pick in 1..100
+            responded = setof(a, received(('respond', _n, _), from_ =a))
+            customSendCommand(('accept', n, v), responded)
+            debug('### chose', n, v)
+
+        elif timeout(timeOutProposer): pass
+        elif (isPreempt and self.preempt) : # If preempted return and try again
+            return
+
+    def run():
+        while True:
+            to_consent()
+            if(self.isPreempt == True and preempt and backOffTime): #if Back Off time enabeled rwait for the random time specified
+                time.sleep(waitTimeBeforeStartingNewRound * ((n[0]%10)+1) )
+            time.sleep(waitTimeBeforeStartingNewRound )
+        
+    def receive(msg= ('done',)): 
+        output('Proposer: terminating')
+        sys.exit()
+
+    def anyof(s):
+        return next(iter(s)) if s else None
+
+
+
+
+class Acceptor(process):
+
+    def setup(learners,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,isPreempt,isTimeOut): 
+        self.totalMessagesLost = 0
+        self.totalSentTriedMessages = 0
+        
+
+    def receive(msg= ('prepare', n), from_= p):
+        if each(sent(('respond', n2, _)), has= n > n2):
+            maxprop = anyof(setof((n, v), sent(('accepted', n, v)),
+                               n==max(setof(n, sent(('accepted', n, _))))))
+
+            customSendCommand(('respond', n, maxprop),p)
+
+        elif(isPreempt == True): #if Preemtion enabeled and proposal number received is not maximum send preempt message
+            n2 = max(setof(n2, sent(('respond', n2, _))))
+            customSendCommand(('PreemtPropose',n2),p)
+
+            
+    def receive(msg= ('accept', n, v)):
+        if not some(sent(('respond', n2, _)), has= n2 > n):
+            customBroadcastSendCommand(('accepted', n, v), learners)
+
+    def run():
+        await(received(('done',)))
+        output('Acceptor: terminating')
+
+    def anyof(s):
+        """return any element of set s if s is not empty or 'None' otherwise"""
+        return next(iter(s)) if s else None        
+
+        
+    def customBroadcastSendCommand(msg,receivers): #Broadcast Messaging based on probability (1- message loss rate)
+        time.sleep(messageDelay)
+        for receiver in receivers:
+            probability = random.random()
+            if probability > messageLossRate:
+                send(msg,to=receiver)
+            else:
+                pass
+
+    def customSendCommand(msg,receiver): #Single Destination Messaging based on probability (1- message loss rate)
+        time.sleep(messageDelay)
+        probability = random.random()
+        if probability > messageLossRate:
+            send(msg,to=receiver)
+        else:
+            pass    
+
+
+class Learner(process):
+
+    def setup(acceptors,monitor,timeOutLearner,isTimeOut):
+        self.valueAchieved = False
+
+    def learn():
+
+        if await(some(received(('accepted', n, v)),
+                      has= len(setof(a, received(('accepted', _n, _v), from_=a)))
+                           > len(acceptors)/2)):
+            output('learned', n, v)
+            send(('valueLearnt',n,v),to= monitor)
+            self.valueAchieved =True
+        elif timeout(self.timeOutLearner) :
+            if self.isTimeOut:
+                output('Learner: terminating')
+                send(('learned', ), to=nodeof(self))
+                output('failed learning anything')
+                sys.exit()
+            else:
+                pass
+
+    def run():
+        while not self.valueAchieved:
+            learn()
+        output('Learner: terminating')
+        send(('learned', ), to=nodeof(self))
+        sys.exit()
+
+    def receive(msg= ('done',)): 
+        output('Learner: terminating')
+        sys.exit()
+
+class Monitor(process):
+    
+    def setup(learners):
+        
+        self.numberOfLearntLearners = 0
+        self.ValueLearnt = -1
+        self.isSafe = True
+
+    def receive(msg= ('valueLearnt', n,v),from_ = p):
+        output('Monitor: Value Learnt - ' + str((n,v)))
+        self.numberOfLearntLearners += 1
+        if (self.numberOfLearntLearners == 1): # saves the first value received
+            self.ValueLearnt = v
+        elif (self.ValueLearnt != v): # checks that value learnt is same as the one received for the first time.
+            self.isSafe = False
+            output('Monitor: Faulty State reached - Multiple Values Learnt')
+
+    def receive(msg= ('done',)): 
+        if numberOfLearntLearners != len(learners):
+            output('Algorithm aborted purposely. No consesus reached. Liveliness Failed.')
+        consensusAchieved = (numberOfLearntLearners == len(learners))
+        if self.isSafe == False:
+            send(('Notsafe',consensusAchieved, ), to=nodeof(self))
+        else:
+            send(('safe',consensusAchieved, ), to=nodeof(self))
+
+        sys.exit()
+
+    def run():
+        await(False)
+
+
+    
+
+
+def main():
+    
+    messageLossRate = 0.0
+    messageDelay = 0.0
+    waitTimeBeforeStartingNewRound = 0
+    timeOutProposer = 10.0
+    timeOutLearner = 20.0
+    isPreempt = False
+    isTimeOut = False
+    maxTimeForEachRun = 50 # To ensure that Algorithm does not run for more than 50 sec each time to reach consensus
+    nacceptors = 3
+    nproposers = 5
+    nlearners =3
+
+    
+    nproposers = int(sys.argv[1]) if len(sys.argv) > 1 else 5
+    nacceptors = int(sys.argv[2]) if len(sys.argv) > 2 else 3
+    nlearners = int(sys.argv[3]) if len(sys.argv) > 3 else 3
+        
+    numberOfRepetitions = int(sys.argv[4]) if len(sys.argv) > 4 else 5
+    messageLossRateInput = float(sys.argv[5]) if len(sys.argv) > 5 else 0.1
+    messageDelayInput = float(sys.argv[6]) if len(sys.argv) > 6 else 0.2
+    waitTimeBeforeStartingNewRoundInput = float(sys.argv[7]) if len(sys.argv) > 7 else 0.5
+    
+    timeOutProposer = float(sys.argv[8]) if len(sys.argv) > 8 else 1
+    timeOutLearner= float(sys.argv[9]) if len(sys.argv) > 9 else 1
+
+    checkPreempt = str(sys.argv[10]) if len(sys.argv) > 10 else 'True'
+    checkTimeOut = str(sys.argv[11]) if len(sys.argv) > 11 else 'False'
+
+    outputFileName = str(sys.argv[12]) if len(sys.argv) > 12 else 'DirectoryFile'
+
+    maxTimeForEachRun = int(sys.argv[13]) if len(sys.argv) > 13 else 50 
+    backOffTime = boolean(sys.argv[14]) if len(sys.argv) > 14 else False
+
+    print('Proposer Number :' + str(nproposers))
+    print('Acceptor Number :' + str(nacceptors))
+    print('Learners Number :' + str(nlearners))
+    print('numberOfRepetitions Number :' + str(numberOfRepetitions))
+    print('messageDelayInput :' + str(messageDelayInput))
+    print('waitTimeBeforeStartingNewRoundInput :' + str(waitTimeBeforeStartingNewRoundInput))
+    print('timeOutProposer :' + str(timeOutProposer))
+    print('timeOutLearner :' + str(timeOutLearner))
+    print('checkPreempt :' + str(checkPreempt))
+    print('checkTimeOut :' + str(checkTimeOut))
+    print('outputFileName :' + str(outputFileName))
+    print('maxTimeForEachRun :' + str(maxTimeForEachRun))
+
+
+    if checkPreempt == 'False' :
+        isPreempt = False
+    else :
+        isPreempt = True
+
+    if checkTimeOut == 'False':
+        isTimeOut = False
+    else :
+        isTimeOut = True
+
+    if isTimeOut == False: # set to any arbitary max value if TimeOut is False
+        timeOutProposer = 100
+        timeOutLearner  = 100 
+
+    assert (not isTimeOut) or ((messageDelayInput < timeOutLearner) and (messageDelayInput<timeOutProposer))
+    assert messageLossRateInput >= 0 and messageLossRateInput <= 1
+
+
+    
+    #Varying Message Loss Rate keeping other parameters as constant
+      
+    messageDelay = messageDelayInput
+    waitTimeBeforeStartingNewRound = waitTimeBeforeStartingNewRoundInput
+    messageLossRateParameters = [messageLossRateInput/5, messageLossRateInput *2/5, messageLossRateInput *3/5, messageLossRateInput *4/5, messageLossRateInput]
+    statisticsCalculator = StatisticsCalculator(timeOutLearner,timeOutProposer,outputFileName)
+    statisticsCalculator.addTableHeader('MessageLoss','MessageDelay','WaitTime')
+    
+    for messageLossRateParamter in messageLossRateParameters:
+        messageLossRate = messageLossRateParamter
+        print('***************************************** messageLossRate: ' + str(messageLossRate))
+        consensusSafety = True
+        consensusLiveness = 0
+        cpuTime, elapsedTime = list(), list()
+        for i in range(numberOfRepetitions):
+            elpstart, cpustart = time.time(), time.process_time()
+            print('***************************************** Run No: ' + str(i+1) )
+            #code
+            acceptors = new(Acceptor, num= nacceptors)
+            monitor = new(Monitor,num= 1)
+            proposers = new(Proposer, (acceptors,monitor,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,timeOutProposer,isPreempt,isTimeOut,backOffTime,), num= nproposers)
+            learners = new(Learner, (acceptors,monitor,timeOutLearner,isTimeOut,), num= nlearners)
+            for p in acceptors: setup(p, (learners,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,isPreempt,isTimeOut,))
+            setup(monitor,(learners,))
+            start(acceptors | proposers | learners | monitor)
+            if await(each(l in learners, has=received(('learned',), from_=l))):
+                #output('Successfully executed Consensus')
+                pass
+            elif timeout(maxTimeForEachRun):
+                output('Forcefully Terminated Algorithm')
+                send(('done',), to= (learners))
+                
+            send(('done',), to= (acceptors|proposers|monitor))
+
+            if await(each(m in monitor, has=received(('Notsafe',True), from_=m))):
+                consensusSafety = False
+            elif await(each(m in monitor, has=received(('safe',False), from_=m))):
+                pass
+            elif await(each(m in monitor, has=received(('safe',True), from_=m))):
+                consensusLiveness+=1
+
+
+            print('***************************************** Pass over')
+            #EndCode
+
+            elpstop, cpustop = time.time(), time.process_time()
+            cpuTime.append(cpustop-cpustart)
+            elapsedTime.append(elpstop-elpstart)
+
+        statisticsCalculator.addEntry(messageLossRateParamter,cpuTime,elapsedTime,isTimeOut,isPreempt,messageDelay,waitTimeBeforeStartingNewRound,consensusSafety,consensusLiveness)  
+    statisticsCalculator.report()
+
+    
+    ####################################################################################################################
+
+
+    #Varying Message Delay keeping other parameters as constant
+
+
+    messageLossRate = messageLossRateInput
+    waitTimeBeforeStartingNewRound = waitTimeBeforeStartingNewRoundInput
+    messageDelayParameters = [messageDelayInput/5, messageDelayInput *2/5, messageDelayInput *3/5, messageDelayInput *4/5, messageDelayInput]
+
+    statisticsCalculator = StatisticsCalculator(timeOutLearner,timeOutProposer,outputFileName)
+    statisticsCalculator.addTableHeader('MessageDelay','MessageLoss','WaitTime')
+
+    for messageDelayParameter in messageDelayParameters:
+        messageDelay = messageDelayParameter
+        consensusSafety = True
+        consensusLiveness = 0
+        cpuTime, elapsedTime = list(), list()
+        print('***************************************** messageDelay: ' + str(messageDelayParameter))
+        for i in range(numberOfRepetitions):
+            elpstart, cpustart = time.time(), time.process_time()
+            print('***************************************** Run No: ' + str(i+1) )
+            #code
+            acceptors = new(Acceptor, num= nacceptors)
+            monitor = new(Monitor,num= 1)
+            proposers = new(Proposer, (acceptors,monitor,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,timeOutProposer,isPreempt,isTimeOut,backOffTime,), num= nproposers)
+            learners = new(Learner, (acceptors,monitor,timeOutLearner,isTimeOut,), num= nlearners)
+            for p in acceptors: setup(p, (learners,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,isPreempt,isTimeOut,))
+            setup(monitor,(learners,))
+            start(acceptors | proposers | learners | monitor)
+            if await(each(l in learners, has=received(('learned',), from_=l))):
+                #output('Successfully executed Consensus')
+                pass
+            elif timeout(maxTimeForEachRun):
+                output('Forcefully Terminated Algorithm')
+                send(('done',), to= (learners))
+                #consensusLiveness = False
+            send(('done',), to= (acceptors|proposers|monitor))
+
+            if await(each(m in monitor, has=received(('Notsafe',True), from_=m))):
+                consensusSafety = False
+            elif await(each(m in monitor, has=received(('safe',False), from_=m))):
+                pass
+            elif await(each(m in monitor, has=received(('safe',True), from_=m))):
+                consensusLiveness+=1
+
+
+            #EndCode
+            print('***************************************** Pass over' )
+
+            elpstop, cpustop = time.time(), time.process_time()
+            cpuTime.append(cpustop-cpustart)
+            elapsedTime.append(elpstop-elpstart)
+
+        statisticsCalculator.addEntry(messageDelay,cpuTime,elapsedTime,isTimeOut,isPreempt,messageLossRate,waitTimeBeforeStartingNewRound,consensusSafety,consensusLiveness)  
+    statisticsCalculator.report()
+    
+    ####################################################################################################################
+    
+    #Varying waitTime Parameter keeping other parameters as constant
+
+    statisticsCalculator = StatisticsCalculator(timeOutLearner,timeOutProposer,outputFileName)
+    statisticsCalculator.addTableHeader('WaitTime','MessageDelay','MessageLoss')
+
+    messageLossRate = messageLossRateInput
+    messageDelay = messageDelayInput
+    waitTimeBeforeStartingNewRoundParameters = [waitTimeBeforeStartingNewRoundInput/5, waitTimeBeforeStartingNewRoundInput *2/5, waitTimeBeforeStartingNewRoundInput *3/5, waitTimeBeforeStartingNewRoundInput *4/5, waitTimeBeforeStartingNewRoundInput]
+
+    for waitTimeBeforeStartingNewRoundParameter in waitTimeBeforeStartingNewRoundParameters:
+        waitTimeBeforeStartingNewRound = waitTimeBeforeStartingNewRoundParameter
+        consensusSafety = True
+        consensusLiveness = 0
+        cpuTime, elapsedTime = list(), list()
+        print('***************************************** waitTimeBeforeStartingNewRound: ' + str(waitTimeBeforeStartingNewRoundParameter))
+        for i in range(numberOfRepetitions):
+            elpstart, cpustart = time.time(), time.process_time()
+            print('***************************************** Run No: ' + str(i+1) )
+            #code
+            acceptors = new(Acceptor, num= nacceptors)
+            monitor = new(Monitor,num= 1)
+            proposers = new(Proposer, (acceptors,monitor,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,timeOutProposer,isPreempt,isTimeOut,backOffTime,), num= nproposers)
+            learners = new(Learner, (acceptors,monitor,timeOutLearner,isTimeOut,), num= nlearners)
+            for p in acceptors: setup(p, (learners,messageLossRate,messageDelay,waitTimeBeforeStartingNewRound,isPreempt,isTimeOut,))
+            setup(monitor,(learners,))
+            start(acceptors | proposers | learners | monitor)
+            if await(each(l in learners, has=received(('learned',), from_=l))):
+                pass
+            elif timeout(maxTimeForEachRun):
+                output('Forcefully Terminated Algorithm')
+                send(('done',), to= (learners))
+            send(('done',), to= (acceptors|proposers|monitor))
+
+            if await(each(m in monitor, has=received(('Notsafe',True), from_=m))):
+                consensusSafety = False
+            elif await(each(m in monitor, has=received(('safe',False), from_=m))):
+                pass
+            elif await(each(m in monitor, has=received(('safe',True), from_=m))):
+                consensusLiveness+=1
+
+            #EndCode
+            print('***************************************** Pass over'  )
+            elpstop, cpustop = time.time(), time.process_time()
+            cpuTime.append(cpustop-cpustart)
+            elapsedTime.append(elpstop-elpstart)
+
+        statisticsCalculator.addEntry(waitTimeBeforeStartingNewRound,cpuTime,elapsedTime,isTimeOut,isPreempt,messageDelay,messageLossRate,consensusSafety,consensusLiveness)  
+    statisticsCalculator.report()
+
+
+# This is an executable specification of the algorithm described in
+# Lamport, L. (2001).  Paxos Made Simple.  ACM SIGACT News 
+# (Distributed Computing Column), 32(4):51-58, December.
+
+# This code includes setup and termination for running repeated rounds until
+# the learners all terminate after learning the consent value or timeout.
